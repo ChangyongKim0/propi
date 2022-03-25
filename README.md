@@ -1,77 +1,38 @@
-# Getting Started with Create React App
+# 지도 서비스
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 법 서비스
 
-## Available Scripts
+- **법 관련 유용한 링크 → [유용한 사이트 모음(20220318...)](https://www.notion.so/20220318-5aeb56d052e54da9bcf41328f90251df)**
+- **법의 구조 → [법의 구조(20220318)](https://www.notion.so/20220318-b5cb35113f6c4d8f828a862a6e64af73)**
+- **건축 허가 시 확인해야 하는 법 → [건축 허가 관련 모든 법 리스트(20220320...)](https://www.notion.so/20220320-981bd778a7124a99ac886cb7d94bf891)**
+- **용도별 시설기준 참고하기 위한 법 → [개별용도 시설기준(20220323...)](https://www.notion.so/20220323-d9b2b08a7bc2445383d9f007b8780bf2)**
+- **주요 법의 하위 법 체계 → [업무 관련 법 트리(20220325...)](https://www.notion.so/20220325-83edeec2f695457d89737df7c950b58f)**
+- 법령 한글주소 링크 참고
+- 위임조문, 인용조문이 들어간 3단링크 확인
 
-In the project directory, you can run:
+[국가법령정보 공동활용](https://open.law.go.kr/LSO/lab/hangulAddr.do)
 
-### `yarn start`
+# 소식 서비스
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 네이버 뉴스 페이지 참고
+- 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[토지이음](http://www.eum.go.kr/web/gd/eb/ebGuideBookDet.jsp)
 
-### `yarn test`
+## 국교부 소식
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 자료형태 : 보도자료, 설명·반박자료, 공지사항(분야세분 없음)으로 구분
+- 분야 : 전체(전체 == 전체 제외하고 모두 선택), 국토도시, 주택토지, 건설, 교통물류, 항공, 도시철도, 일반
 
-### `yarn build`
+# 데이터 서비스
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- REMS? 인가 내용 확인하기
+- 관련 정보 + 다양한 정보 사용하기
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 고려할 사항
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 뒤로가기의 고민
 
-### `yarn eject`
+[뒤로 가기는 어디로 가야하는가](https://brunch.co.kr/@uxdesingercho/1)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-# Server Hosting
-
-1. download putty: [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
-
-2. use tmux
-   왼쪽에서 오른쪽 이동은 ctrl + B , rarrow, larrow
+- iframe의 고민
