@@ -15,8 +15,8 @@
   color: $col-bgd-g5;
 }
 
-.wrapper > .title{
-   &:first-child {
+.wrapper > .title {
+  &:first-child {
     margin-top: 0px;
     color: $col-bgd-2;
   }
@@ -47,20 +47,19 @@
 .background {
   width: 100%;
   @include column(auto, auto, 0px);
-  &-white{
-      width: 80%;
-  @include column(none, none, 30px);
-  padding-bottom: 30px;
+  &-white {
+    width: 80%;
+    @include column(none, none, 30px);
+    padding-bottom: 30px;
     background-color: $col-bgd-w;
   }
-  &-dark{
-      width: 80%;
-  @include column(none, none, 30px);
-  padding-bottom: 30px;
+  &-dark {
+    width: 80%;
+    @include column(none, none, 30px);
+    padding-bottom: 30px;
     background-color: $col-bgd-g3;
   }
 }
-
 
 .map-wrapper {
   width: 80%;
@@ -68,7 +67,7 @@
   overflow: hidden;
 }
 
-.modal-area{
+.modal-area {
   position: relative;
   z-index: 30;
 }

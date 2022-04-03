@@ -177,83 +177,83 @@ $font-xl: 1.25rem;
   line-height: 10px;
 }
 
-@mixin txt-bold{
+@mixin txt-bold {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   margin: 0px;
 }
 
-@mixin txt-medium{
+@mixin txt-medium {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   margin: 0px;
 }
 
-@mixin txt-regular{
+@mixin txt-regular {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: normal;
   margin: 0px;
 }
 
-@mixin txt-light{
+@mixin txt-light {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 300;
   margin: 0px;
 }
 
-@mixin txt-28{
+@mixin txt-28 {
   font-size: 28px;
   line-height: 28px;
   // line-height: 41px;
 }
 
-@mixin txt-21{
+@mixin txt-21 {
   font-size: 21px;
   line-height: 21px;
   // line-height: 30px;
 }
 
-@mixin txt-19{
+@mixin txt-19 {
   font-size: 19px;
   line-height: 19px;
   // line-height: 28px;
 }
 
-@mixin txt-17{
+@mixin txt-17 {
   font-size: 17px;
   line-height: 17px;
   // line-height: 25px;
 }
 
-@mixin txt-14{
+@mixin txt-14 {
   font-size: 14px;
   line-height: 14px;
   // line-height: 20px;
 }
 
-@mixin txt-12{
+@mixin txt-12 {
   font-size: 12px;
   line-height: 12px;
   // line-height: 17px;
 }
 
-@mixin txt-11{
+@mixin txt-11 {
   font-size: 11px;
   line-height: 11px;
   // line-height: 16px;
 }
 
-@mixin txt-9{
+@mixin txt-9 {
   font-size: 9px;
   line-height: 9px;
   // line-height: 13px;
 }
 
-@mixin txt-7{
+@mixin txt-7 {
   font-size: 7px;
   line-height: 7px;
   // line-height: 10px;
@@ -264,7 +264,8 @@ $font-xl: 1.25rem;
   flex-direction: column;
   gap: $gap;
   align-items: center;
-  box-sizing: border-box;
+  box-sizing: content-box;
+  // box-sizing: border-box;
   > * {
     width: $w;
     height: $h;
@@ -277,7 +278,8 @@ $font-xl: 1.25rem;
   flex-direction: row;
   gap: $gap;
   align-items: center;
-  box-sizing: border-box;
+  box-sizing: content-box;
+  // box-sizing: border-box;
   > * {
     width: $w;
     height: $h;

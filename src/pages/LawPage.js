@@ -24,7 +24,6 @@ const cx = classNames.bind(styles);
 // var map = new naver.maps.Map(mapDiv);
 
 const LawPage = () => {
-
   useEffect(() => {
     // console.log("useEffect");
   }, []);
@@ -34,49 +33,45 @@ const LawPage = () => {
       <p className={cx("title")}>Propi_LawPage</p>
       <p className={cx("title")}>ATOMS</p>
       <p className={cx("title")}>Banner</p>
-      <Banner/>
+      <Banner />
       <p className={cx("title")}>Button</p>
-      <Button shape="rectangle"/>
-      <Button/>
-      <Button color="transparent"/>
-      <Button color="primary"/>
-      <Button type="excel">
-        엑셀로 내보내기
-      </Button>
-      <Button type="cad">
-        캐드로 내보내기
-      </Button>
+      <Button shape="rectangle" />
+      <Button />
+      <Button color="transparent" />
+      <Button color="primary" />
+      <Button type="excel">엑셀로 내보내기</Button>
+      <Button type="cad">캐드로 내보내기</Button>
       <p className={cx("title")}>Card</p>
-      <Card use_tooltip={true} clickable={false}/>
-      <Card use_tooltip={true} tooltip={["법령정보센터에서 보기"]}/>
-      <Card use_tooltip={true} transparent={false}/>
-      <Card use_tooltip={true} transparent={false} shape="rectangle"/>
+      <Card use_tooltip={true} clickable={false} />
+      <Card use_tooltip={true} tooltip={["법령정보센터에서 보기"]} />
+      <Card use_tooltip={true} transparent={false} />
+      <Card use_tooltip={true} transparent={false} shape="rectangle" />
       <p className={cx("title")}>Chip</p>
-      <Chip/>
-      <Chip clicked={true}/>
+      <Chip />
+      <Chip clicked={true} />
       <p className={cx("title")}>DataTable</p>
-      <DataTable/>
+      <DataTable />
       <p className={cx("title")}>Dialog</p>
-      <Dialog/>
+      <Dialog />
       <p className={cx("title")}>Divider</p>
-      <Divider color="primary"/>
-      <Divider/>
-      <Divider style="bold"/>
-      <Divider style="dashed"/>
+      <Divider color="primary" />
+      <Divider />
+      <Divider style="bold" />
+      <Divider style="dashed" />
       <p className={cx("title")}>List</p>
-      <List/>
+      <List />
       <p className={cx("title")}>Navigation</p>
-      <Navigation/>
+      <Navigation />
       <p className={cx("title")}>Search</p>
-      <Search/>
+      <Search />
       <p className={cx("title")}>Sheet</p>
-      <Sheet/>
+      <Sheet />
       <p className={cx("title")}>Snackbar</p>
-      <Snackbar/>
+      <Snackbar />
       <p className={cx("title")}>Switch</p>
-      <Switch/>
+      <Switch />
       <p className={cx("title")}>TextField</p>
-      <TextField/>
+      <TextField />
       <p className={cx("title")}>E . N . D</p>
     </div>
   );

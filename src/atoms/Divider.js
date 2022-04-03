@@ -6,15 +6,16 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const Divider = ({
-  style,
-  color,
-  vertical,
-}) => {
-  
+const Divider = ({ style, color, vertical }) => {
   return (
-    <div className={cx("wrapper", "style-"+style, "color-"+color, vertical?"vertical":"horizontal")}>
-    </div>
+    <div
+      className={cx(
+        "wrapper",
+        "style-" + style,
+        "color-" + color,
+        vertical ? "vertical" : "horizontal"
+      )}
+    ></div>
   );
 };
 

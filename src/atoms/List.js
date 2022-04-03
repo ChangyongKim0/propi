@@ -7,44 +7,51 @@ import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
 
 const List = ({
-  thumbnail,
-  text,
-  subtext,
-  onClick,
+  children,
+  type,
+  align,
+  attach,
+  multiple_line,
+  gap,
+  height,
 }) => {
-  
   return (
-    <div className={cx("wrapper")}>
-      <div className={cx("frame-title")}>
-        <div>{thumbnail}</div>
-        <div>
-          <div>
-            {text}
-          </div>
-          <div>
-            {subtext}
-          </div>
-        </div>
-      </div>
+    <div
+      className={cx(
+        "wrapper",
+        "type-" + type,
+        "align-" + align,
+        "attach-" + attach,
+        multiple_line ? "multiple-line" : ""
+      )}
+      style={{ height: height + "rem", gap: gap + "rem" }}
+    >
+      {children}
     </div>
   );
 };
 
 List.defaultProps = {
-  thumbnail: <div><p>행정<p></p>규칙</p></div>,
-  text: "text",
-  subtext: "subtext",
-  onClick: ()=>{},
-  clickable: true,
-  transparent: true,
-  use_thumbnail: true,
-  tight: true,
+  children: (
+    <>
+      <div>children.first</div>
+      <div>children.last</div>
+    </>
+  ),
+  type: "column",
+  align: "center",
+  attach: "default",
+  multiple_line: false,
+  gap: 0.5,
+  height: "auto",
 };
 
 export default List;
 
-// ### ValuationCompText
+// ### List
 
-// - style: column, row, grid
-// - multiple-line: boolean
-// - gap: int
+// - type : column / row / grid
+// - align : left / center / right
+// - attach : start / default / end
+// - multiple_line : boolean
+// - gap : int

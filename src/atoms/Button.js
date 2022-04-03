@@ -3,36 +3,28 @@ import React, { Children } from "react";
 
 import styles from "./Button.module.scss";
 import classNames from "classnames/bind";
-import {ReactComponent as Excel} from "../svgs/Excel.svg";
-import {ReactComponent as AutoCad} from "../svgs/AutoCad.svg";
+import { ReactComponent as Excel } from "../svgs/Excel.svg";
+import { ReactComponent as Autocad } from "../svgs/Autocad.svg";
 
 const cx = classNames.bind(styles);
 
-const Button = ({
-  type,
-  shape,
-  children,
-  color,
-  padding,
-  onClick,
-  tight,
-}) => {
-  
+const Button = ({ type, shape, children, color, padding, onClick, tight }) => {
   return (
-    <div className={cx(
-      "wrapper",
-      "shape-"+shape,
-      "color-"+(type=="default"?color:type),
+    <div
+      className={cx(
+        "wrapper",
+        "shape-" + shape,
+        "color-" + (type == "default" ? color : type)
       )}
-      onClick={onClick}>
-      {
-        type=="excel"?
-        <Excel className={cx("icon")}/>:(
-          type=="cad"?
-          <AutoCad className={cx("icon")}/>:
-          <></>
-        )
-      }
+      onClick={onClick}
+    >
+      {type == "excel" ? (
+        <Excel className={cx("icon")} />
+      ) : type == "cad" ? (
+        <Autocad className={cx("icon")} />
+      ) : (
+        <></>
+      )}
       {children}
     </div>
   );
@@ -43,7 +35,9 @@ Button.defaultProps = {
   shape: "default",
   children: "children",
   color: "default",
-  onClick: ()=>{console.log("clicked default button")},
+  onClick: () => {
+    console.log("clicked default button");
+  },
   tight: true,
 };
 

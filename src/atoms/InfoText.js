@@ -6,23 +6,16 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const InfoText = ({
-  data,
-  use_tooltip,
-  use_toggle,
-  tooltip,
-  style,
-}) => {
-  
+const InfoText = ({ data, use_tooltip, use_toggle, tooltip, style }) => {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("frame-title")}>
-          <div className={cx("style-" + style)}>
-            <div className={cx("title-" + style)}>
-              {style == "detail" ? "\u00A0\u00A0" : ""}
-              {data.title}
-            </div>
+        <div className={cx("style-" + style)}>
+          <div className={cx("title-" + style)}>
+            {style == "detail" ? "\u00A0\u00A0" : ""}
+            {data.title}
           </div>
+        </div>
       </div>
     </div>
   );

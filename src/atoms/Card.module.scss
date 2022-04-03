@@ -1,43 +1,42 @@
 @import "../util/style.scss";
 
 .wrapper {
-    position: relative;
-    @include column(auto, auto, 0rem);
-    align-items: flex-start;
-
-    overflow: visible;
+  position: relative;
+  @include column(auto, auto, 0rem);
+  align-items: flex-start;
+  overflow: visible;
 }
 
 .shape {
-    &-default {
-        border-radius: .5rem;
-    }
-    &-rectangle {
-        border-radius: 0;
-    }
+  &-default {
+    border-radius: 0.5rem;
+  }
+  &-rectangle {
+    border-radius: 0;
+  }
 }
 
 .solid {
-    background-color: $col-w;
-    border: 1px solid $col-g9;
-    // @include shd-1;
+  background-color: $col-w;
+  border: 1px solid $col-g8;
+  // @include shd-1;
 }
 
 .clickable {
-    &.transparent {
-        cursor: pointer;
-        &:hover {
-            background-color: $col-g95;
-            // @include shd-1;
-        }
+  &.transparent {
+    cursor: pointer;
+    &:hover {
+      background-color: $col-g95;
+      // @include shd-1;
     }
-    &.solid {
-        cursor: pointer;
-        &:hover {
-            background-color: $col-g95;
-            // @include shd-2;
-        }
+  }
+  &.solid {
+    cursor: pointer;
+    &:hover {
+      background-color: $col-g95;
+      // @include shd-2;
     }
+  }
 }
 
 .full {
@@ -45,21 +44,19 @@
   height: 100%;
 }
 
-.tooltip {
-    position: absolute;
-    color: $col-g5;
-    // background-color: $col-w;
-    text-align: left;
-    // border: 1px solid $col-g9;
-    top: -0.25rem;
-    transform: translate(0, -100%);
-    > * {
-            font-size: 0.75rem;
-            opacity: 1;
-        }
-    transition: all 300ms;
-    &-hidden {
-        opacity: 0;
-        visibility: hidden;
+@media (max-width: 600px) {
+  .transparent {
+    cursor: pointer;
+    background-color: $col-w;
+    border: 1px solid $col-g8;
+  }
+  .clickable {
+    &.transparent {
+      cursor: pointer;
+      &:focus {
+        background-color: $col-g95;
+        // @include shd-1;
+      }
     }
+  }
 }

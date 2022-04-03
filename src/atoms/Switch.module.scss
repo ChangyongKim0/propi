@@ -9,71 +9,71 @@
 }
 
 .style {
-   &-default {
+  &-default {
     * {
-        @include txt-regular();
-        @include txt-14();
-        color: $col-txt-g3;
+      @include txt-regular();
+      @include txt-14();
+      color: $col-txt-g3;
     }
-   } 
-   &-total {
+  }
+  &-total {
     * {
-        @include txt-regular();
-        @include txt-14();
-        color: $col-txt-w;
+      @include txt-regular();
+      @include txt-14();
+      color: $col-txt-w;
     }
-   } 
-   &-detail {
+  }
+  &-detail {
     * {
-        @include txt-light();
-        @include txt-11();
-        color: $col-txt-g5;
+      @include txt-light();
+      @include txt-11();
+      color: $col-txt-g5;
     }
-   } 
+  }
 }
 
-.frame { 
-    &-title{
-        @include row(auto, auto, 0px);
-        text-align: left;
-    }
-    &-value{
-        @include row(auto, auto, 0px);
-        justify-content: space-between;
-        white-space: nowrap;
-        overflow: visible;
-    }
-    &-left{
-        @include row(auto, auto, 0px);
-        text-align: left;
-    }
-    &-right{
-        @include row(auto, auto, 0px);
-        text-align: right;
-    }
+.frame {
+  &-title {
+    @include row(auto, auto, 0px);
+    text-align: left;
+  }
+  &-value {
+    @include row(auto, auto, 0px);
+    justify-content: space-between;
+    white-space: nowrap;
+    overflow: visible;
+  }
+  &-left {
+    @include row(auto, auto, 0px);
+    text-align: left;
+  }
+  &-right {
+    @include row(auto, auto, 0px);
+    text-align: right;
+  }
 }
 
 .text {
-    &-default{
-        @include txt-bold();
-    }
-    &-total{
-        @include txt-bold();
-        @include txt-21();
-    }
-    &-detail{
-        @include txt-bold();
-    }
+  &-default {
+    @include txt-bold();
+  }
+  &-total {
+    @include txt-bold();
+    @include txt-21();
+  }
+  &-detail {
+    @include txt-bold();
+  }
 }
 
-.unit{
-    &-default{
-        @include txt-bold();
-    }
-    &-total{
-        @include txt-bold();
-    }
-    &-detail{
-        @include txt-bold();
-    }
+.unit {
+  &-default {
+    @include txt-bold();
+  }
+  &-total {
+    @include txt-bold();
+  }
+  &-detail {
+    @include txt-bold();
+  }
 }
