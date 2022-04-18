@@ -1,79 +1,194 @@
 @import "../util/style.scss";
 
 .wrapper {
-  @include row(50%, 20px, 0px);
-  width: 290px;
-  height: 20px;
+  position: relative;
+  @include row(auto, auto, 0px);
   justify-content: space-between;
-  border-radius: 5px;
+  border: 2px solid $col-1;
+  border-radius: 0.5rem;
+  padding: 1rem 0.6rem;
+  &.dropdown {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
-.style {
-  &-default {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-g3;
-    }
+.text-field {
+  width: calc(100% - 20px);
+  @include txt-regular;
+  @include txt-17;
+  // -ms-user-select: none;
+  // -moz-user-select: -moz-none;
+  // // -khtml-user-select: none;
+  // -webkit-user-select: none;
+  // user-select: none;
+  &::placeholder {
+    color: $col-txt-g5;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
-  &-total {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-w;
+}
+
+.icon {
+  fill: $col-bgd-g3;
+  cursor: pointer;
+}
+
+.drop-down {
+  @include column(auto, auto, 0px);
+  overflow: auto;
+  max-height: 50vh;
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    &-thumb {
+      height: 7%;
+      background-color: $col-bgd-g8;
+      border-radius: 10px;
     }
-  }
-  &-detail {
-    * {
-      @include txt-light();
-      @include txt-11();
-      color: $col-txt-g5;
+    &-track {
+      background-color: $col-bgd-w;
     }
   }
 }
 
 .frame {
-  &-title {
+  &-search {
     @include row(auto, auto, 0px);
-    text-align: left;
-  }
-  &-value {
-    @include row(auto, auto, 0px);
+    width: 100%;
+    height: 1rem;
     justify-content: space-between;
-    white-space: nowrap;
-    overflow: visible;
   }
-  &-left {
-    @include row(auto, auto, 0px);
-    text-align: left;
+  &-drop-down {
+    position: absolute;
+    z-index: 2;
+    left: -1.5px;
+    top: 3rem;
+    width: 100%;
+    background-color: $col-bgd-w;
+    max-height: 50vh;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border: 1.5px solid $col-g8;
+    box-shadow: 0 0 0.5rem $col-g8;
+    overflow: hidden;
   }
-  &-right {
-    @include row(auto, auto, 0px);
-    text-align: right;
+  &-list {
+    @include column(100%, none, 0.3rem);
+    width: calc(100% - 1.5rem);
+    padding: 0.5rem 0.75rem;
+    > * {
+      text-align: left;
+    }
+    &:hover {
+      background-color: $col-g95;
+      cursor: pointer;
+    }
+    &:active {
+      background-color: $col-g95;
+    }
   }
+}
+
+.focused {
+  background-color: $col-g95;
+  cursor: pointer;
+}
+
+.title {
+  font-weight: bold;
+  color: $col-g2;
+  line-height: 1.2;
+}
+
+.sub-title {
+  font-size: 0.75rem;
+  color: $col-g3;
+}
+
+.frame-value {
+  @include row(auto, auto, 0.5rem);
+  justify-content: space-between;
 }
 
 .text {
-  &-default {
-    @include txt-bold();
+  @include txt-regular;
+  font-size: 0.75rem;
+  color: $col-g4;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  &:hover {
+    overflow: visible;
   }
-  &-total {
-    @include txt-bold();
-    @include txt-21();
+  &-bold {
+    @include txt-medium;
+    font-size: 0.75rem;
+    color: $col-g2;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    &:hover {
+      overflow: visible;
+    }
   }
-  &-detail {
-    @include txt-bold();
+  &-emph {
+    color: $col-1;
+    background-color: $col-g95;
+    // font-weight: bolder;
+    border-radius: 0.2rem;
   }
 }
 
-.unit {
-  &-default {
-    @include txt-bold();
+@media (max-width: 600px) {
+  .wrapper {
+    &.dropdown {
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
   }
-  &-total {
-    @include txt-bold();
+
+  .frame {
+    &-search {
+      @include row(auto, auto, 0px);
+      width: 100%;
+      height: 1rem;
+      justify-content: space-between;
+    }
+    &-drop-down {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 2;
+      top: 4rem;
+      width: calc(100vw - 1rem);
+      background-color: $col-bgd-w;
+      max-height: 100vh;
+      height: calc(calc(var(--vh, 1vh) * 100) - 5rem);
+      border-bottom-left-radius: 0rem;
+      border-bottom-right-radius: 0rem;
+      border: 1.5px solid $col-g8;
+      box-shadow: 0 0 0rem $col-g8;
+      overflow: hidden;
+    }
+    &-list {
+      @include column(100%, none, 0.3rem);
+      width: calc(100% - 1.5rem);
+      padding: 0.5rem 0.75rem;
+      > * {
+        text-align: left;
+      }
+      &:hover {
+        background-color: $col-g95;
+        cursor: pointer;
+      }
+      &:active {
+        background-color: $col-g95;
+      }
+    }
   }
-  &-detail {
-    @include txt-bold();
+  .drop-down {
+    max-height: calc(100vh - 5rem);
   }
 }

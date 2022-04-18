@@ -9,7 +9,15 @@ import Icon from "../atoms/Icon";
 
 const cx = classNames.bind(styles);
 
-const LawCard = ({ children, title, sub_title, links, type, depth }) => {
+const LawCard = ({
+  children,
+  title,
+  sub_title,
+  links,
+  type,
+  depth,
+  onClick,
+}) => {
   const getColor = (type) => {
     switch (type) {
       case "법":
@@ -36,11 +44,16 @@ const LawCard = ({ children, title, sub_title, links, type, depth }) => {
 
   useEffect(() => {
     Array.from(
-      document.getElementsByClassName("law_card_frame_guidbar_" + title)
+      document.getElementsByClassName(
+        "law_card_frame_guidbar_" + title.replaceAll(" ", "_")
+      )
     ).map((e) => {
       e.style.height =
-        document.getElementById("law_card_frame_content_" + title)
-          .clientHeight + "px";
+        document.getElementById(
+          "law_card_frame_content_" + title.replaceAll(" ", "_")
+        ).clientHeight -
+        16 +
+        "px";
     });
     if (media.matches !== mobile) {
       setMobile(media.matches);
@@ -49,11 +62,16 @@ const LawCard = ({ children, title, sub_title, links, type, depth }) => {
     // document.getElementById("frame-button"+title).addEventListener("mouseover", (e)=>{e.stopPropagation();});
     window.addEventListener("resize", () => {
       Array.from(
-        document.getElementsByClassName("law_card_frame_guidbar_" + title)
+        document.getElementsByClassName(
+          "law_card_frame_guidbar_" + title.replaceAll(" ", "_")
+        )
       ).map((e) => {
         e.style.height =
-          document.getElementById("law_card_frame_content_" + title)
-            .clientHeight + "px";
+          document.getElementById(
+            "law_card_frame_content_" + title.replaceAll(" ", "_")
+          ).clientHeight -
+          16 +
+          "px";
       });
       if (media.matches !== mobile) {
         setMobile(media.matches);
@@ -65,21 +83,24 @@ const LawCard = ({ children, title, sub_title, links, type, depth }) => {
   return (
     <div className={cx("wrapper")}>
       <div className={cx("frame-guidebar-list")}>
-        {(mobile ? Array(parseInt(depth) + 1).fill(0) : [0]).map((e, idx) => {
+        {(mobile ? Array(parseInt(depth) + 1).fill(0) : [0]).map((_, idx) => {
           return (
             <div
+              key={idx}
               className={
-                cx("frame-guidebar") + " law_card_frame_guidbar_" + title
+                cx("frame-guidebar") +
+                " law_card_frame_guidbar_" +
+                title.replaceAll(" ", "_")
               }
             ></div>
           );
         })}
       </div>
       <div
-        id={"law_card_frame_content_" + title}
+        id={"law_card_frame_content_" + title.replaceAll(" ", "_")}
         className={cx("frame-content")}
       >
-        <Card transparent={true}>
+        <Card transparent={true} onClick={onClick}>
           <List type="row" align="left">
             <List type="column" align="left" gap="0.2">
               {mobile ? (

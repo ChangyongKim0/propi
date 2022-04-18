@@ -1,79 +1,183 @@
 @import "../util/style.scss";
 
 .wrapper {
-  @include row(50%, 20px, 0px);
-  width: 290px;
-  height: 20px;
-  justify-content: space-between;
-  border-radius: 5px;
-}
-
-.style {
-  &-default {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-g3;
-    }
-  }
-  &-total {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-w;
-    }
-  }
-  &-detail {
-    * {
-      @include txt-light();
-      @include txt-11();
-      color: $col-txt-g5;
-    }
-  }
+  position: relative;
 }
 
 .frame {
-  &-title {
-    @include row(auto, auto, 0px);
-    text-align: left;
+  &-switch {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 2.4rem;
+    height: 1.2rem;
+    background: #fff;
+    border: 1.5px solid $col-1;
+    border-radius: 20px;
+    transition: 0.2s;
+    &:hover {
+      background: $col-g95;
+    }
+    &.off {
+      border-color: $col-g8;
+    }
+    overflow: hidden;
   }
-  &-value {
-    @include row(auto, auto, 0px);
-    justify-content: space-between;
-    white-space: nowrap;
-    overflow: visible;
+  &-multiple-switch {
+    position: relative;
+    @include row(auto, auto, 0.3rem);
+    padding: 0.05rem 0.3rem;
+    // border: 1.5px solid $col-g9;
+    background-color: $col-g95;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    flex-wrap: wrap;
   }
-  &-left {
-    @include row(auto, auto, 0px);
-    text-align: left;
+  &-button {
+    position: absolute;
+    top: 0.1rem;
+    left: 1.3rem;
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 20px;
+    background: $col-1;
+    transition: 0.2s;
+
+    &.off {
+      background-color: $col-w;
+      left: 0.1rem;
+      box-shadow: 0 0 0.5rem $col-g6;
+    }
   }
-  &-right {
-    @include row(auto, auto, 0px);
-    text-align: right;
+  &-multiple-button {
+    font-weight: bold;
+    color: $col-g2;
+    padding: 0.4rem 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.2s;
+    max-width: calc(100% - 0.6rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    &:hover {
+      background: $col-w;
+    }
+    &.on {
+      // box-shadow: 0 0 0.5rem $col-g7;
+      background-color: $col-1;
+      // font-weight: bold;
+      color: $col-w;
+      pointer-events: none;
+    }
+  }
+  &-single-button {
+    font-weight: bold;
+    color: $col-g2;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1.5px solid $col-g8;
+    cursor: pointer;
+    transition: 0.2s;
+    max-width: calc(100% - 0.6rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    &:hover {
+      background: $col-g95;
+    }
+    &.on {
+      // box-shadow: 0 0 0.5rem $col-g7;
+      border-color: $col-1;
+      background-color: $col-1;
+      // font-weight: bold;
+      color: $col-w;
+    }
   }
 }
 
-.text {
-  &-default {
-    @include txt-bold();
-  }
-  &-total {
-    @include txt-bold();
-    @include txt-21();
-  }
-  &-detail {
-    @include txt-bold();
-  }
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
-.unit {
-  &-default {
-    @include txt-bold();
+@media (max-width: 600px) {
+  .frame {
+    &-switch {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      width: 4.075rem;
+      height: 2.025rem;
+      background: #fff;
+      border: 1.5px solid $col-1;
+      border-radius: 20px;
+      transition: 0.2s;
+      &:hover {
+        background: rgba(0, 0, 0, 0);
+      }
+      &.off {
+        border-color: $col-g7;
+      }
+    }
+    &-multiple-switch {
+      position: relative;
+      @include row(auto, auto, 0.3rem);
+      padding: 0.1rem 0.3rem;
+      border: 1.5px solid $col-g8;
+      background-color: $col-w;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      flex-wrap: wrap;
+    }
+    &-button {
+      position: absolute;
+      top: 0.15rem;
+      left: 2.2rem;
+      display: inline-block;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 20px;
+      background: $col-1;
+      transition: 0.2s;
+      &.off {
+        background-color: $col-w;
+        left: 0.15rem;
+      }
+    }
+    &-multiple-button {
+      padding: 0.75rem 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+      max-width: calc(100% - 0.6rem);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.125rem;
+      &:hover {
+        background: $col-g95;
+      }
+      &.on {
+        // box-shadow: 0 0 0.5rem $col-g7;
+        background-color: $col-1;
+        // font-weight: bold;
+        color: $col-w;
+        pointer-events: none;
+      }
+    }
   }
-  &-total {
-    @include txt-bold();
-  }
-  &-detail {
-    @include txt-bold();
+
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
 }

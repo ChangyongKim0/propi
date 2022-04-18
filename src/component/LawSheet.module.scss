@@ -1,0 +1,98 @@
+@import "../util/style.scss";
+
+.wrapper {
+  @include row(none, none, 0px);
+  flex-direction: row-reverse;
+}
+
+.style {
+  &-default {
+    * {
+      @include txt-regular();
+      @include txt-14();
+      color: $col-txt-g3;
+    }
+  }
+  &-total {
+    * {
+      @include txt-regular();
+      @include txt-14();
+      color: $col-txt-w;
+    }
+  }
+  &-detail {
+    * {
+      @include txt-light();
+      @include txt-11();
+      color: $col-txt-g5;
+    }
+  }
+}
+
+.frame {
+  &-top {
+    // @include column(auto, auto, 0px);
+    // justify-content: center;
+    padding: 1rem 1rem;
+    text-align: left;
+  }
+  &-content {
+    width: 100%;
+  }
+  &-value {
+    @include row(auto, auto, 0px);
+    justify-content: space-between;
+    white-space: nowrap;
+    overflow: visible;
+  }
+  &-left {
+    @include row(auto, auto, 0px);
+    text-align: left;
+  }
+  &-right {
+    @include row(auto, auto, 0px);
+    text-align: right;
+  }
+}
+
+.text {
+  &-section,
+  &-subsection {
+    padding: 0.5rem 1rem;
+    width: calc(100% - 2rem);
+    text-align: left;
+    background-color: $col-w;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      background-color: $col-g95;
+    }
+  }
+  &-subsection {
+    padding: 0.5rem 1rem;
+    font-weight: 400;
+    font-size: 1rem;
+    color: $col-g3;
+  }
+  &-total {
+    @include txt-bold();
+    @include txt-21();
+  }
+  &-detail {
+    @include txt-bold();
+  }
+}
+
+.unit {
+  &-default {
+    @include txt-bold();
+  }
+  &-total {
+    @include txt-bold();
+  }
+  &-detail {
+    @include txt-bold();
+  }
+}

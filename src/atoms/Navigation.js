@@ -1,40 +1,72 @@
 import React from "react";
 // { useEffect }
-
+import { Link } from "react-router-dom";
 import styles from "./Navigation.module.scss";
 import classNames from "classnames/bind";
+import Divider from "./Divider";
+import List from "./List";
+import Icon from "./Icon";
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({ thumbnail, text, subtext, onClick }) => {
+const Navigation = ({ nav_data, emph, onClick }) => {
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("frame-title")}>
-        <div>{thumbnail}</div>
-        <div>
-          <div>{text}</div>
-          <div>{subtext}</div>
+      <List gap="0">
+        <Link to="/">
+          <div className={cx("frame-logo")}>
+            <img
+              className={cx("logo")}
+              src="/img/logo512.png"
+              alt="Propi"
+            ></img>
+            <div className={cx("logo-title")}>Propi</div>
+          </div>
+        </Link>
+        <Divider length="80%" />
+        <div className={cx("frame-main")}>
+          {nav_data.map((e, idx) => {
+            return (
+              <Link id={idx} to={e.link_to}>
+                <div
+                  className={cx("frame-button", emph == e.id ? "emph" : "")}
+                  onClick={() => {
+                    onClick(e);
+                  }}
+                >
+                  <Icon
+                    type={e.icon}
+                    size="2.5"
+                    color={emph == e.id ? "white" : "default"}
+                    clickable={false}
+                  />
+                  <div className={cx("title", emph == e.id ? "emph" : "")}>
+                    {e.title}
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
-      </div>
+      </List>
+      <List gap="0">
+        <Divider length="80%" />
+        <div className={cx("frame-footer")}></div>
+      </List>
     </div>
   );
 };
 
 Navigation.defaultProps = {
-  thumbnail: (
-    <div>
-      <p>
-        행정<p></p>규칙
-      </p>
-    </div>
-  ),
-  text: "text",
-  subtext: "subtext",
-  onClick: () => {},
-  clickable: true,
-  transparent: true,
-  use_thumbnail: true,
-  tight: true,
+  nav_data: [
+    { id: 0, icon: "default", title: "nav_data[0].title", link_to: "" },
+    { id: 1, icon: "default", title: "nav_data[1].title", link_to: "" },
+  ],
+  emph: 1,
+  onClick: (e) => {
+    console.log("clicked default navigation with param:");
+    console.log(e);
+  },
 };
 
 export default Navigation;

@@ -5,16 +5,25 @@
 
 .type {
   &-row {
-    @include row(auto, auto, none);
+    @include row(none, none, none);
+    &.full {
+      height: 100%;
+    }
   }
   &-column {
-    @include column(auto, auto, none);
+    @include column(none, none, none);
+    &.full {
+      width: 100%;
+    }
   }
 }
 
 .align {
   &-left {
     align-items: flex-start;
+  }
+  &-center {
+    align-items: center;
   }
   &-right {
     align-items: flex-end;
@@ -24,6 +33,9 @@
 .attach {
   &-start {
     justify-content: flex-start;
+  }
+  &-center {
+    justify-content: center;
   }
   &-end {
     justify-content: flex-end;

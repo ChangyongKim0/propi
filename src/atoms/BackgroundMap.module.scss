@@ -1,0 +1,15 @@
+@import "../util/style.scss";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.map > :first-child > * > :last-child {
+  pointer-events: none; // 커스텀 오버레이 선택 제거
+}

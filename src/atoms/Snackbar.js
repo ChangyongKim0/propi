@@ -3,38 +3,50 @@ import React from "react";
 
 import styles from "./Snackbar.module.scss";
 import classNames from "classnames/bind";
+import Icon from "./Icon";
 
 const cx = classNames.bind(styles);
 
-const Snackbar = ({ thumbnail, text, subtext, onClick }) => {
+const Snackbar = ({ style, children, action, onClick }) => {
+  const getStatusChar = (status) => {
+    switch (status) {
+      case "warning":
+        return "!";
+      case "error":
+        return "×";
+      case "success":
+        return "✓";
+      default:
+        return "i";
+    }
+  };
+
   return (
-    <div className={cx("wrapper")}>
-      <div className={cx("frame-title")}>
-        <div>{thumbnail}</div>
-        <div>
-          <div>{text}</div>
-          <div>{subtext}</div>
+    <div className={cx("wrapper", "style-" + style)} onClick={onClick}>
+      {style == "default" ? (
+        <></>
+      ) : (
+        <div className={cx("frame-icon", "style-" + style)}>
+          {getStatusChar(style)}
         </div>
-      </div>
+      )}
+      <div className={cx("frame-text")}>{children}</div>
+      <div className={cx("action")}>{action}</div>
+      {/* <Icon type="close" size="2" /> */}
     </div>
   );
 };
 
 Snackbar.defaultProps = {
-  thumbnail: (
-    <div>
-      <p>
-        행정<p></p>규칙
-      </p>
-    </div>
-  ),
-  text: "text",
-  subtext: "subtext",
-  onClick: () => {},
-  clickable: true,
-  transparent: true,
-  use_thumbnail: true,
-  tight: true,
+  style: "default",
+  children: "children",
+  action: "action",
+  onClick: () => {
+    console.log("clicked default snackbar");
+  },
+  callback: () => {
+    console.log("fired callback of default snackbar");
+  },
 };
 
 export default Snackbar;

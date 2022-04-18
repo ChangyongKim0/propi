@@ -15,8 +15,12 @@ const Tooltip = ({ visible, tooltip, align }) => {
         "align-" + align
       )}
     >
-      {tooltip.map((e) => {
-        return <div className={cx("text")}>{e}</div>;
+      {tooltip.map((e, idx) => {
+        return (
+          <div key={idx} className={cx("text")}>
+            {e}
+          </div>
+        );
       })}
     </div>
   );

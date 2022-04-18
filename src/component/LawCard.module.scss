@@ -34,8 +34,10 @@
 .frame {
   &-guidebar {
     width: 0.2rem;
-    background-color: $col-g95;
+    margin-left: 0.6rem;
+    background-color: $col-g9;
     border-radius: 1rem;
+    transform: translate(0, -0rem);
   }
   &-icon {
     font-size: 1.125rem;
@@ -62,6 +64,9 @@
 .sub-title {
   font-size: 1rem;
   color: $col-g5;
+  text-align: left;
+  word-break: keep-all;
+  word-wrap: break-word;
 }
 
 .text {
@@ -99,8 +104,9 @@
     &-guidebar {
       background-color: $col-g9;
       border-radius: 1rem;
+      margin-left: 0rem;
       &:last-child {
-        background-color: $col-g8;
+        background-color: $col-g6;
       }
     }
     &-guidebar-list {
@@ -118,7 +124,7 @@
       border-radius: 0.1rem;
       background-color: $col-g8;
       &:last-child {
-        background-color: $col-g7;
+        background-color: $col-g5;
       }
     }
     &-content {

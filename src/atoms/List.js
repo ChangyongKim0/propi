@@ -14,6 +14,7 @@ const List = ({
   multiple_line,
   gap,
   height,
+  tight,
 }) => {
   return (
     <div
@@ -22,7 +23,8 @@ const List = ({
         "type-" + type,
         "align-" + align,
         "attach-" + attach,
-        multiple_line ? "multiple-line" : ""
+        multiple_line ? "multiple-line" : "",
+        tight ? "tight" : "full"
       )}
       style={{ height: height + "rem", gap: gap + "rem" }}
     >
@@ -44,6 +46,7 @@ List.defaultProps = {
   multiple_line: false,
   gap: 0.5,
   height: "auto",
+  tight: true,
 };
 
 export default List;

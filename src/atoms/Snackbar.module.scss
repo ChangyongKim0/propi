@@ -1,79 +1,111 @@
 @import "../util/style.scss";
 
 .wrapper {
-  @include row(50%, 20px, 0px);
-  width: 290px;
-  height: 20px;
+  @include row(auto, auto, 1rem);
   justify-content: space-between;
+  padding: 0.5rem;
+  min-height: 2rem;
   border-radius: 5px;
-}
-
-.style {
-  &-default {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-g3;
+  background-color: $col-w;
+  border: 1.5px solid $col-g8;
+  box-shadow: 0 0 0.5rem $col-g8;
+  overflow: hidden;
+  &.style {
+    &-default {
+      border-color: $col-1;
     }
   }
-  &-total {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-w;
-    }
+  &:hover {
+    background-color: $col-g95;
   }
-  &-detail {
-    * {
-      @include txt-light();
-      @include txt-11();
-      color: $col-txt-g5;
-    }
-  }
+  cursor: pointer;
 }
 
 .frame {
-  &-title {
-    @include row(auto, auto, 0px);
-    text-align: left;
+  &-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 1rem;
+    border: 0.1rem solid $col-w;
+    font-weight: bold;
+    @include row(auto, auto, 0);
+    justify-content: center;
+    align-items: flex-start;
+    color: $col-w;
+    line-height: 1.7;
+    // box-shadow: 0 0 5rem $col-w;
+    &.style {
+      &-warning {
+        color: $col-y;
+        border-color: $col-y;
+        box-shadow: 0 0 10rem $col-y;
+      }
+      &-error {
+        color: $col-r;
+        border-color: $col-r;
+        box-shadow: 0 0 10rem $col-r;
+      }
+      &-success {
+        color: $col-g;
+        border-color: $col-g;
+        box-shadow: 0 0 10rem $col-g;
+      }
+      &-info {
+        color: $col-b;
+        border-color: $col-b;
+        box-shadow: 0 0 10rem $col-b;
+      }
+    }
   }
-  &-value {
-    @include row(auto, auto, 0px);
-    justify-content: space-between;
-    white-space: nowrap;
-    overflow: visible;
-  }
-  &-left {
-    @include row(auto, auto, 0px);
-    text-align: left;
-  }
-  &-right {
-    @include row(auto, auto, 0px);
-    text-align: right;
+  &-text {
+    color: $col-g2;
   }
 }
 
-.text {
-  &-default {
-    @include txt-bold();
-  }
-  &-total {
-    @include txt-bold();
-    @include txt-21();
-  }
-  &-detail {
-    @include txt-bold();
-  }
+.action {
+  font-weight: 500;
+  color: $col-1;
 }
 
-.unit {
-  &-default {
-    @include txt-bold();
+@media (max-width: 600px) {
+  .wrapper {
+    @include row(auto, auto, 1rem);
+    justify-content: center;
+    min-width: 0px;
+    min-height: 0.75rem;
+    height: 0.9rem;
+    padding-left: 0.3rem;
+    padding-right: 0.6rem;
+    border-radius: 5rem;
+    background-color: $col-w;
+    border: 1.5px solid $col-g8;
+    box-shadow: 0 0 0.5rem $col-g8;
+    overflow: hidden;
+    &.style {
+      &-default {
+        border-color: $col-1;
+        padding-left: 0.6rem;
+      }
+    }
+    &:hover {
+      background-color: $col-w;
+    }
+    cursor: pointer;
   }
-  &-total {
-    @include txt-bold();
-  }
-  &-detail {
-    @include txt-bold();
+  .frame {
+    &-icon {
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 1rem;
+      font-weight: bold;
+      @include row(auto, auto, 0);
+      justify-content: center;
+      align-items: flex-start;
+      color: $col-w;
+      line-height: 1.05;
+    }
+    &-text {
+      color: $col-g2;
+    }
   }
 }

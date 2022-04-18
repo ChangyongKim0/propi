@@ -13,25 +13,34 @@ const DataTable = ({ title, content }) => {
       <div className={cx("frame-table")}>
         <Divider style="bold" />
         <div className={cx("table-title")}>
-          {title.map((e) => {
-            return <div onClick={e.onClick}>{e.text}</div>;
+          {title.map((e, idx) => {
+            return (
+              <div key={idx} onClick={e.onClick}>
+                {e.text}
+              </div>
+            );
           })}
         </div>
         <Divider style="bold" />
-        {content.map((e, idx) => {
-          return (
-            <>
-              {idx == 0 ? <></> : <Divider />}
-              <div className={cx("table-cell")}>
-                {title.map((e2) => {
-                  return (
-                    <div onClick={e[e2.text].onClick}>{e[e2.text].text}</div>
-                  );
-                })}
-              </div>
-            </>
-          );
-        })}
+        {
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          content.map((e, idx) => {
+            return (
+              <>
+                {idx == 0 ? <></> : <Divider />}
+                <div className={cx("table-cell")}>
+                  {title.map((e2, idx2) => {
+                    return (
+                      <div key={idx2} onClick={e[e2.text].onClick}>
+                        {e[e2.text].text}
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            );
+          })
+        }
         <Divider style="bold" />
       </div>
     </div>

@@ -10,6 +10,7 @@ const cx = classNames.bind(styles);
 const Card = ({
   shape,
   children,
+  border,
   padding,
   clickable,
   transparent,
@@ -28,7 +29,8 @@ const Card = ({
         "shape-" + shape,
         clickable ? "clickable" : "",
         transparent ? "transparent" : "solid",
-        tight ? "tight" : "full"
+        tight ? "tight" : "full",
+        border ? "border" : "naked"
       )}
       style={
         color == "#ffffff"
@@ -56,6 +58,7 @@ const Card = ({
 Card.defaultProps = {
   shape: "default",
   children: "children",
+  border: true,
   padding: 0.5,
   clickable: true,
   transparent: false,

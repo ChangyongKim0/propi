@@ -1,79 +1,52 @@
 @import "../util/style.scss";
 
 .wrapper {
-  @include row(50%, 20px, 0px);
-  width: 290px;
-  height: 20px;
-  justify-content: space-between;
-  border-radius: 5px;
-}
-
-.style {
-  &-default {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-g3;
-    }
-  }
-  &-total {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-w;
-    }
-  }
-  &-detail {
-    * {
-      @include txt-light();
-      @include txt-11();
-      color: $col-txt-g5;
-    }
-  }
+  padding-left: 0rem;
+  z-index: 1;
 }
 
 .frame {
-  &-title {
-    @include row(auto, auto, 0px);
-    text-align: left;
+  @include column(100%, auto, 0px);
+  width: 20rem;
+  max-width: 40vw;
+  height: --100vh;
+  border-right: 1.5px solid $col-g8;
+  background-color: $col-g95;
+  z-index: 2;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+
+  &-top {
+    background-color: $col-w;
+    border-bottom: 1px solid $col-g8;
+    &-content {
+      min-height: 5rem;
+    }
   }
-  &-value {
-    @include row(auto, auto, 0px);
-    justify-content: space-between;
-    white-space: nowrap;
-    overflow: visible;
-  }
-  &-left {
-    @include row(auto, auto, 0px);
-    text-align: left;
-  }
-  &-right {
-    @include row(auto, auto, 0px);
-    text-align: right;
+  &-content {
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 0.25rem;
+      height: 0.25rem;
+      &-thumb {
+        height: 10%;
+        background-color: $col-bgd-g9;
+        border-radius: 10px;
+        &:hover {
+          background-color: $col-bgd-g8;
+        }
+      }
+      &-track {
+        // background-color: $col-bgd-g9;
+      }
+      &:hover {
+        width: 0.5rem;
+      }
+    }
   }
 }
 
-.text {
-  &-default {
-    @include txt-bold();
-  }
-  &-total {
-    @include txt-bold();
-    @include txt-21();
-  }
-  &-detail {
-    @include txt-bold();
-  }
-}
-
-.unit {
-  &-default {
-    @include txt-bold();
-  }
-  &-total {
-    @include txt-bold();
-  }
-  &-detail {
-    @include txt-bold();
-  }
-}
+// .type {
+//   &-dark {
+//     background-color: $col-g3;
+//   }
+// }

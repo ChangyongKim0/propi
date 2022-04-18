@@ -2,7 +2,7 @@
 @import "../util/reset.css";
 // $col-txt-1: #7b8692;
 
-$col-b: #000000;
+$col-k: #000000;
 $col-g1: #1a1a1a;
 $col-g2: #333333;
 $col-g25: #404040;
@@ -17,6 +17,11 @@ $col-g95: #f2f2f2;
 $col-w: #ffffff;
 $col-1: #7c4dff;
 $col-1-hover: #9068ff;
+$col-r: #d32f2f;
+$col-y: #f9a825;
+$col-y-faint: #fff8ee;
+$col-g: #4caf50;
+$col-b: #0091ea;
 
 @mixin shd-1 {
   box-shadow: 0 0 0.25rem $col-shd-b;

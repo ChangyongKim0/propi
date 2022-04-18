@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const Divider = ({ style, color, vertical }) => {
+const Divider = ({ style, color, vertical, length }) => {
   return (
     <div
       className={cx(
@@ -15,6 +15,7 @@ const Divider = ({ style, color, vertical }) => {
         "color-" + color,
         vertical ? "vertical" : "horizontal"
       )}
+      style={vertical ? { height: length } : { width: length }}
     ></div>
   );
 };
@@ -23,6 +24,7 @@ Divider.defaultProps = {
   style: "default",
   color: "grey",
   vertical: false,
+  length: "100%",
 };
 
 export default Divider;

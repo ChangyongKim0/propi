@@ -11,36 +11,23 @@
   background-color: $col-w;
 }
 
-.frame-content {
-  @include column(none, none, 30px);
-  width: 100vw;
-  position: relative;
-  background-color: $col-w;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  height: --100vh;
-  flex: 1;
-  box-sizing: border-box;
-  padding: 5rem 2rem;
-  // background-color: $col-g95;
-  overflow: auto;
-  &::-webkit-scrollbar {
-    width: 0.25rem;
-    height: 0.25rem;
-    &-thumb {
-      height: 10%;
-      background-color: $col-bgd-g9;
-      border-radius: 10px;
-      &:hover {
-        background-color: $col-bgd-g8;
-      }
-    }
-    &-track {
-      // background-color: $col-bgd-g9;
-    }
-    &:hover {
-      width: 0.5rem;
-    }
+.frame {
+  &-content {
+    position: relative;
+    height: --100vh;
+    flex: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  &-search {
+    padding: 0.75rem 1rem;
+  }
+  &-button {
+    width: fit-content;
+  }
+  &-image {
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -51,7 +38,7 @@
   color: $col-bgd-g5;
 }
 
-.frame-content > .title {
+.wrapper > .title {
   &:first-child {
     margin-top: 0px;
     color: $col-bgd-2;
