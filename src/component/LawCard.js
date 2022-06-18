@@ -27,13 +27,15 @@ const LawCard = ({
       case "규":
         return "#998855";
       case "례":
-        return "#998855";
+        return "#7755bb";
       case "고":
-        return "#998855";
+        return "#bb3311";
       case "공":
-        return "#998855";
+        return "#bb3311";
       case "훈":
-        return "#998855";
+        return "#448888";
+      case "조":
+        return "#888888";
       default:
         return "#bb6655";
     }
@@ -41,6 +43,8 @@ const LawCard = ({
 
   const [mobile, setMobile] = useState(false);
   let media = window.matchMedia("(max-width: 600px)");
+
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     Array.from(
@@ -52,7 +56,7 @@ const LawCard = ({
         document.getElementById(
           "law_card_frame_content_" + title.replaceAll(" ", "_")
         ).clientHeight -
-        16 +
+        28 +
         "px";
     });
     if (media.matches !== mobile) {
@@ -70,7 +74,7 @@ const LawCard = ({
           document.getElementById(
             "law_card_frame_content_" + title.replaceAll(" ", "_")
           ).clientHeight -
-          16 +
+          32 +
           "px";
       });
       if (media.matches !== mobile) {
@@ -81,7 +85,7 @@ const LawCard = ({
   }, [mobile]);
 
   return (
-    <div className={cx("wrapper")}>
+    <div className={cx("wrapper", type == "법" ? "first" : "")}>
       <div className={cx("frame-guidebar-list")}>
         {(mobile ? Array(parseInt(depth) + 1).fill(0) : [0]).map((_, idx) => {
           return (
@@ -100,57 +104,79 @@ const LawCard = ({
         id={"law_card_frame_content_" + title.replaceAll(" ", "_")}
         className={cx("frame-content")}
       >
-        <Card transparent={true} onClick={onClick}>
-          <List type="row" align="left">
-            <List type="column" align="left" gap="0.2">
-              {mobile ? (
-                <List type="row" gap="0.2">
-                  {Array(parseInt(depth))
-                    .fill(0)
-                    .map((_, idx) => {
-                      return <div key={idx} className={cx("frame-dots")}></div>;
-                    })}
-                </List>
-              ) : (
-                <></>
-              )}
-              <div
-                className={cx("frame-icon")}
-                style={{ color: getColor(type) }}
-              >
-                {type}
-              </div>
-            </List>
-            <List type="column" align="left">
-              <List type="row" align="left">
-                <h2 className={cx("title")}>{title}</h2>
-                <List type="row" height="1.125">
-                  <Icon
-                    type="external_link"
-                    use_tooltip={true}
-                    tooltip={["법령정보 열기"]}
-                  />
-                  <Icon
-                    type="three_bay"
-                    use_tooltip={true}
-                    tooltip={["삼단비교 열기"]}
-                  />
-                  <Icon
-                    type="pick_range"
-                    use_tooltip={true}
-                    tooltip={["체계도 보기"]}
-                  />
-                  <Icon
-                    type="detail"
-                    use_tooltip={true}
-                    tooltip={["세부 내용 보기"]}
-                  />
-                </List>
+        <List
+          type="row"
+          align="left"
+          gap="0.5"
+          onMouseEnter={() => {
+            setHovered(true);
+          }}
+          onMouseLeave={() => {
+            setHovered(false);
+          }}
+        >
+          <Card transparent={true} onClick={onClick}>
+            <List type="row" align="left">
+              <List type="column" align="left" gap="0.2">
+                {mobile ? (
+                  <List type="row" gap="0.2">
+                    {Array(parseInt(depth))
+                      .fill(0)
+                      .map((_, idx) => {
+                        return (
+                          <div key={idx} className={cx("frame-dots")}></div>
+                        );
+                      })}
+                  </List>
+                ) : (
+                  <></>
+                )}
+                <div
+                  className={cx("frame-icon")}
+                  style={{ color: getColor(type) }}
+                >
+                  {type}
+                </div>
               </List>
-              <h3 className={cx("sub-title")}>{sub_title}</h3>
+              <List type="column" align="left">
+                <h2 className={cx("title")}>{title}</h2>
+                <h3 className={cx("sub-title")}>{sub_title}</h3>
+              </List>
             </List>
-          </List>
-        </Card>
+          </Card>
+          {hovered ? (
+            <>
+              <Icon
+                type="external_link"
+                use_tooltip={true}
+                tooltip={["법령정보 열기"]}
+                size="2"
+              />
+              <Icon
+                type="three_bay"
+                use_tooltip={true}
+                tooltip={["삼단비교 열기"]}
+                size="2"
+              />
+              <Icon
+                type="pick_range"
+                use_tooltip={true}
+                tooltip={["체계도 보기"]}
+                size="2"
+                disable
+              />
+              <Icon
+                type="detail"
+                use_tooltip={true}
+                tooltip={["세부 내용 보기"]}
+                size="2"
+              />
+            </>
+          ) : (
+            <></>
+          )}
+        </List>
+
         {children}
       </div>
     </div>
