@@ -25,13 +25,23 @@
   }
   &-multiple-switch {
     position: relative;
-    @include row(auto, auto, 0.3rem);
-    padding: 0.05rem 0.3rem;
+    &.vertical {
+      @include column(auto, auto, 0.3rem);
+    }
+    &.horizontal {
+      @include row(auto, auto, 0.3rem);
+    }
+    padding: 0.2rem 0.3rem;
     // border: 1.5px solid $col-g9;
     background-color: $col-g95;
     border-radius: 0.5rem;
     overflow: hidden;
     flex-wrap: wrap;
+    &.color {
+      &-white {
+        background-color: $col-w;
+      }
+    }
   }
   &-button {
     position: absolute;
@@ -68,12 +78,27 @@
     &:hover {
       background: $col-w;
     }
+
+    &.color {
+      &-white {
+        &:hover {
+          background: $col-g95;
+        }
+      }
+    }
     &.on {
       // box-shadow: 0 0 0.5rem $col-g7;
       background-color: $col-1;
       // font-weight: bold;
       color: $col-w;
       pointer-events: none;
+      &.unselectable {
+        pointer-events: all;
+        cursor: pointer;
+      }
+      &:hover {
+        background: $col-1;
+      }
     }
   }
   &-single-button {
@@ -111,6 +136,9 @@
 }
 
 @media (max-width: 600px) {
+  .wrapper {
+    width: 100%;
+  }
   .frame {
     &-switch {
       position: relative;
@@ -131,13 +159,19 @@
     }
     &-multiple-switch {
       position: relative;
-      @include row(auto, auto, 0.3rem);
-      padding: 0.1rem 0.3rem;
+      &.vertical {
+        @include column(auto, auto, 0.3rem);
+      }
+      &.horizontal {
+        @include row(auto, auto, 0.3rem);
+      }
+      padding: 0rem 0rem;
       border: 1.5px solid $col-g8;
       background-color: $col-w;
       border-radius: 0.5rem;
       overflow: hidden;
       flex-wrap: wrap;
+      width: 100%;
     }
     &-button {
       position: absolute;
@@ -156,13 +190,16 @@
     }
     &-multiple-button {
       padding: 0.75rem 0.5rem;
+      width: 3rem !important;
+      height: 2rem !important;
       border-radius: 0.5rem;
       cursor: pointer;
       transition: 0.2s;
       max-width: calc(100% - 0.6rem);
       overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
-      font-size: 1.125rem;
+      font-size: 0.75rem;
       &:hover {
         background: $col-g95;
       }

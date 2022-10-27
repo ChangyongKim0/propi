@@ -11,12 +11,15 @@ const Switch = ({
   on,
   disabled,
   onClick,
+  color,
   multiple,
   button,
   multiple_data,
   text,
   max_width,
   children,
+  vertical,
+  unselectable,
 }) => {
   const [new_on, toggleNewOn] = useToggle(on);
   const [active_idx, setActiveIdx] = useState(
@@ -51,23 +54,37 @@ const Switch = ({
       style={{ maxWidth: max_width }}
     >
       {multiple ? (
-        <div className={cx("frame-multiple-switch")}>
-          {multiple_data.map((e, idx) => (
-            <div
-              key={idx}
-              id={idx}
-              className={cx(
-                "frame-multiple-button",
-                idx == active_idx ? "on" : "off"
-              )}
-              onClick={() => {
-                setActiveIdx(idx);
-                onClick(multiple_data[idx]);
-              }}
-            >
-              {e.text}
-            </div>
-          ))}
+        <div
+          className={cx(
+            "frame-multiple-switch",
+            "color-" + color,
+            vertical ? "vertical" : "horizontal"
+          )}
+        >
+          {multiple_data.map((e, idx) =>
+            !unselectable || idx != 0 ? (
+              <div
+                key={idx}
+                id={idx}
+                className={cx(
+                  "frame-multiple-button",
+                  "color-" + color,
+                  idx == active_idx ? "on" : "off",
+                  unselectable ? "unselectable" : ""
+                )}
+                onClick={() => {
+                  idx != active_idx
+                    ? onClick(multiple_data[idx])
+                    : onClick(multiple_data[0]);
+                  idx != active_idx ? setActiveIdx(idx) : setActiveIdx(0);
+                }}
+              >
+                {e.text}
+              </div>
+            ) : (
+              <></>
+            )
+          )}
         </div>
       ) : button ? (
         <div className={cx("frame-single-button", new_on ? "on" : "off")}>
@@ -89,6 +106,7 @@ Switch.defaultProps = {
     console.log("clicked default switch with param:");
     console.log(param);
   },
+  color: "default",
   multiple: false,
   button: false,
   multiple_data: [
@@ -98,6 +116,8 @@ Switch.defaultProps = {
   ],
   text: "text",
   max_width: "570px",
+  vertical: false,
+  unselectable: false,
 };
 
 export default Switch;
@@ -107,6 +127,7 @@ export default Switch;
 // - style: default / detail / total
 // - use_tooltip: True / False
 // - use_toggle: True / False
+// - color: white / default
 // - tooltip
 // - title, value, unit, second_value, second_unit
 // - toggle_content <=children

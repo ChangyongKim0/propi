@@ -4,7 +4,7 @@
   @include column(100%, auto, 0px);
   justify-content: space-between;
   width: 4rem;
-  height: calc(var(--vh, 1vh) * 100);
+  height: var(--new100vh);
   border-right: 1.5px solid $col-g8;
   background-color: $col-w;
   z-index: 2;
@@ -61,6 +61,8 @@
 .title {
   // position: absolute;
   // top: 4rem;
+
+  text-align: center;
   color: $col-g5;
   width: calc(100% - 1rem);
   font-size: 0.75rem;
@@ -77,6 +79,7 @@
 .logo {
   width: 2rem;
   &-title {
+    font-family: "Noto Sans KR";
     font-size: 0.75rem;
     color: $col-1;
     font-weight: bolder;
@@ -88,11 +91,52 @@
     &-button {
       height: 4.5rem;
     }
+    &-logo {
+    }
   }
 
   .title {
     // position: absolute;
     // top: 4rem;
+    font-family: "MalgunGothic";
     font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    width: 100%;
+    border-right: 0px solid $col-g8;
+    background-color: $col-w;
+  }
+  .frame {
+    &-button {
+      padding-left: 0.5rem;
+      flex-direction: row;
+      height: 3rem;
+      gap: 0.5rem;
+      &:hover {
+        background-color: $col-w;
+      }
+      &.emph {
+        background-color: $col-g95;
+      }
+    }
+  }
+
+  .title {
+    // position: absolute;
+    // top: 4rem;
+    text-align: left;
+    padding: 0;
+    font-family: "NanumSquare";
+    font-size: 1.125rem;
+    line-height: 1.125rem;
+    font-weight: $font-b;
+    color: $col-g3;
+    &.emph {
+      color: $col-1;
+      // background-color: $col-g95;
+    }
   }
 }

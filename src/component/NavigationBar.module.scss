@@ -10,66 +10,17 @@
   padding-bottom: 30px;
 }
 
-.title {
-  @include txt-head;
-  font-size: 32px;
-  margin-top: 60px;
-  color: $col-bgd-g5;
-}
-
-.wrapper > .title {
-  &:first-child {
-    margin-top: 0px;
-    color: $col-bgd-2;
+.frame {
+  &-box {
+    z-index: 1;
   }
-  &:last-child {
-    margin-top: 200px;
-    color: $col-bgd-2;
+  &-nav {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 70vw;
+    height: --100vh;
+    background-color: $col-w;
+    box-shadow: $shd-1;
   }
-}
-
-.event {
-  @include txt-head;
-  background-color: $col-bgd-g8;
-  padding: 15px;
-  color: $col-txt-w;
-  cursor: pointer;
-  &:hover {
-    background-color: $col-bgd-g9;
-  }
-  &:active {
-    background-color: $col-bgd-g8;
-  }
-}
-
-.relative {
-  position: relative;
-}
-
-.background {
-  width: 100%;
-  @include column(auto, auto, 0px);
-  &-white {
-    width: 80%;
-    @include column(none, none, 30px);
-    padding-bottom: 30px;
-    background-color: $col-bgd-w;
-  }
-  &-dark {
-    width: 80%;
-    @include column(none, none, 30px);
-    padding-bottom: 30px;
-    background-color: $col-bgd-g3;
-  }
-}
-
-.map-wrapper {
-  width: 80%;
-  height: 80vh;
-  overflow: hidden;
-}
-
-.modal-area {
-  position: relative;
-  z-index: 30;
 }

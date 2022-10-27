@@ -31,5 +31,5 @@ export default Divider;
 
 // ### Divider
 
-// - style: default / bold / dashed
+// - style: default / bold / dashed / faint
 // - color: primary / grey

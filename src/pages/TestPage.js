@@ -22,6 +22,13 @@ import Icon from "../atoms/Icon";
 import useToggle from "../hooks/useToggle";
 import Overlay from "../atoms/Overlay";
 import NavigationBar from "../component/NavigationBar";
+import DataList from "../component/DataList";
+import LawSheet from "../component/LawSheet";
+import MapSheet from "../component/MapSheet";
+import ServiceCardWithLink from "../component/ServiceCardWithLink";
+import IFrame from "../atoms/IFrame";
+import SnackbarScenario from "../component/SnackbarScenario";
+import useGlobalVar from "../hooks/useGlobalVar";
 
 const cx = classNames.bind(styles);
 // var mapDiv = document.getElementById('map');
@@ -31,6 +38,8 @@ const TestPage = () => {
   useEffect(() => {
     // console.log("useEffect");
   }, []);
+
+  const [global_var, setGlobalVar] = useGlobalVar();
 
   const [backdrop, setBackdrop] = useState(false);
   const [overlay_stack, setOverlayStack] = useState(false);
@@ -76,6 +85,10 @@ const TestPage = () => {
         <Icon color="white" />
         <Icon color="primary" />
         <Icon color="black" />
+        <p className={cx("title")}>IFrame</p>
+        <div className={cx("frame-big")}>
+          <IFrame />
+        </div>
         <p className={cx("title")}>List</p>
         <List />
         <p className={cx("title")}>Navigation</p>
@@ -160,10 +173,69 @@ const TestPage = () => {
             depth="2"
           />
         </LawCard>
+        <p className={cx("title")}>MapSheet</p>
+        <MapSheet /> <MapSheet force_data force_state="loading" />
+        <MapSheet force_data />
+        <p className={cx("title")}>LawSheet</p>
+        <LawSheet />
+        <p className={cx("title")}>DataList</p>
+        <div className={cx("frame-small")}>
+          <DataList />
+        </div>
+        <div className={cx("frame-small")}>
+          <DataList id="land_characteristic" title="토지특성">
+            {[
+              {
+                id: "0",
+                title: "지목",
+                value: "대",
+                unit: "",
+                type: "string",
+              },
+              {
+                id: "1",
+                title: "지적공부상 면적",
+                value: 440.23,
+                unit: "[area]",
+                type: "number_detail_1",
+              },
+              {
+                id: "2",
+                title: "토지실제이용",
+                value: "답",
+                unit: "",
+                type: "string",
+              },
+              {
+                id: "3",
+                title: "지형높이, 형상",
+                value: "평지, 장방형",
+                unit: "",
+                type: "string",
+              },
+            ]}
+          </DataList>
+        </div>
+        <p className={cx("title")}>ServiceCardWithLink</p>
+        <div className={cx("frame-small")}>
+          <ServiceCardWithLink />
+        </div>
+        <div className={cx("frame-small")}>
+          <ServiceCardWithLink
+            link_to="/"
+            src_img="/img/hey.png"
+            title="지도로 분석하기"
+            text_illust={[
+              "토지와 건물 등의 다양한 정보를 ",
+              "지도를 이용하여 쉽게 확인할 수 있어요.",
+            ]}
+          />
+        </div>
         <p className={cx("title")}>E . N . D</p>
       </div>
       {/* <Sheet></Sheet> */}
       <NavigationBar>test</NavigationBar>
+
       {overlay_stack ? (
         <Overlay
           backdrop={false}
@@ -202,6 +274,7 @@ const TestPage = () => {
       >
         {backdrop ? <Button /> : <></>}
       </Overlay>
+      {global_var.snackbar ? <SnackbarScenario /> : <></>}
     </div>
   );
 };

@@ -8,6 +8,8 @@ import React, {
 } from "react";
 import { API_URI } from "../shortcut";
 
+const default_expire_date = 365;
+
 export const CookieDataContext = createContext({
   cookie_data: { data: {} },
   handleCookieData: () => {},
@@ -46,11 +48,12 @@ const createCookie = (exp) => {
 };
 
 const reduceCookieData = (state, action) => {
+  console.log("hello p");
   let new_state = { ...state };
   switch (action.type) {
     case "create":
       const id = getCookie("id");
-      if (!id) {
+      if (id == undefined) {
         createCookie(365);
         console.log("created cookie.");
         new_state.id = getCookie("id");
@@ -60,7 +63,11 @@ const reduceCookieData = (state, action) => {
       }
       return new_state;
     case "set_cookie":
-      setCookie(action.name, action.value, action.exp);
+      setCookie(
+        action.name,
+        action.value,
+        action.exp == undefined ? default_expire_date : action.exp
+      );
       console.log(
         "successfully set cookie: NAME=" +
           action.name +
@@ -87,22 +94,22 @@ const reduceCookieData = (state, action) => {
       new_state[action.name] = null;
       return new_state;
     case "patch":
-      axios.patch(API_URI + "cookie", {
-        id: new_state.id,
-        data: action.data,
-        setting: action.setting,
-      });
+      // axios.patch(API_URI + "cookie", {
+      //   id: new_state.id,
+      //   data: action.data,
+      //   setting: action.setting,
+      // });
       console.log("successfully patched cookie_data", new_state.id);
       Object.keys(action.data || {}).map((key) => {
         new_state.data[key] = action.data[key];
       });
       return new_state;
     case "add":
-      axios.patch(API_URI + "cookie/add", {
-        id: new_state.id,
-        data: action.data,
-        setting: action.setting,
-      });
+      // axios.patch(API_URI + "cookie/add", {
+      //   id: new_state.id,
+      //   data: action.data,
+      //   setting: action.setting,
+      // });
       console.log("successfully added cookie_data", new_state.id);
       Object.keys(action.data || {}).map((key) => {
         if (new_state.data[key] == undefined) {
@@ -174,19 +181,19 @@ export const CookieDataProvider = ({ children }) => {
   useEffect(() => {
     // handleCookieData({ type: "delete_cookie", name: "id" });
     handleCookieData({ type: "create" });
-    axios.put(API_URI + "cookie", { id: getCookie("id") }).then((request) => {
-      console.log("cookie id", cookie_data);
-      handleCookieData({
-        type: "update",
-        data: request.data.data,
-      });
-    });
-    axios.get("https://ipapi.co/json/").then((request) => {
-      handleCookieData({
-        type: "patch",
-        setting: { history: _getIPAndLocation(request.data) },
-      });
-    });
+    // axios.put(API_URI + "cookie", { id: getCookie("id") }).then((request) => {
+    //   console.log("cookie id", cookie_data);
+    //   handleCookieData({
+    //     type: "update",
+    //     data: request.data.data,
+    //   });
+    // });
+    // axios.get("https://ipapi.co/json/").then((request) => {
+    //   handleCookieData({
+    //     type: "patch",
+    //     setting: { history: _getIPAndLocation(request.data) },
+    //   });
+    // });
   }, []);
   // "ip": "2001:2d8:e995:59b6::ef0:80ac",
   //     "version": "IPv6",

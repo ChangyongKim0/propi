@@ -43,7 +43,7 @@
 .text {
   &-section {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: $font-e;
     text-align: left;
 
     word-break: keep-all;
@@ -51,7 +51,7 @@
   }
   &-subsection {
     font-size: 1.75rem;
-    font-weight: 500;
+    font-weight: $font-e;
     text-align: left;
 
     word-break: keep-all;

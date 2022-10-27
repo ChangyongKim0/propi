@@ -48,7 +48,7 @@ const Card = ({
       <Tooltip
         visible={mouse_over && use_tooltip}
         tooltip={tooltip}
-        align="left"
+        align="bottom-left"
       />
       {children}
     </div>

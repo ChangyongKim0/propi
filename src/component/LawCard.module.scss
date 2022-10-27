@@ -2,9 +2,13 @@
 
 .wrapper {
   position: relative;
-  @include row(auto, auto, 0.2rem);
+  @include row(auto, auto, 0);
   justify-content: flex-start;
   border-radius: 5px;
+  margin-left: 1.5rem;
+  &.first {
+    margin-left: 0;
+  }
 }
 
 .style {
@@ -33,15 +37,18 @@
 
 .frame {
   &-guidebar {
+    position: absolute;
+    top: 2rem;
+    left: 0.3rem;
     width: 0.2rem;
     margin-left: 0.6rem;
-    background-color: $col-g9;
+    background-color: $col-g95;
     border-radius: 1rem;
     transform: translate(0, -0rem);
   }
   &-icon {
     font-size: 1.125rem;
-    font-weight: bold;
+    font-weight: $font-e;
   }
   &-content {
     @include column(auto, auto, 0.2rem);
@@ -55,7 +62,7 @@
 
 .title {
   font-size: 1.125rem;
-  font-weight: bold;
+  font-weight: $font-b;
   text-align: left;
   word-break: keep-all;
   word-wrap: break-word;
@@ -64,6 +71,7 @@
 .sub-title {
   font-size: 1rem;
   color: $col-g5;
+  font-weight: $font-r;
   text-align: left;
   word-break: keep-all;
   word-wrap: break-word;
@@ -102,7 +110,7 @@
   }
   .frame {
     &-guidebar {
-      background-color: $col-g9;
+      background-color: $col-g95;
       border-radius: 1rem;
       margin-left: 0rem;
       &:last-child {
@@ -113,6 +121,7 @@
       position: absolute;
       @include row(0.2rem, auto, 0.2rem);
       left: 0.5rem;
+      z-index: 100;
     }
     &-icon {
       font-size: 1.125rem;

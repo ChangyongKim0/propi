@@ -6,13 +6,15 @@ import classNames from "classnames/bind";
 import Divider from "./Divider";
 import List from "./List";
 import Icon from "./Icon";
+import useGlobalVar from "../hooks/useGlobalVar";
 
 const cx = classNames.bind(styles);
 
 const Navigation = ({ nav_data, emph, onClick }) => {
+  const [global_var, setGlobalVar] = useGlobalVar();
   return (
     <div className={cx("wrapper")}>
-      <List gap="0">
+      <List gap="0" align={global_var.media_mobile ? "left" : "center"}>
         <Link to="/">
           <div className={cx("frame-logo")}>
             <img
@@ -23,7 +25,7 @@ const Navigation = ({ nav_data, emph, onClick }) => {
             <div className={cx("logo-title")}>Propi</div>
           </div>
         </Link>
-        <Divider length="80%" />
+        <Divider length="90%" color="faint" />
         <div className={cx("frame-main")}>
           {nav_data.map((e, idx) => {
             return (
@@ -36,8 +38,16 @@ const Navigation = ({ nav_data, emph, onClick }) => {
                 >
                   <Icon
                     type={e.icon}
-                    size="2.5"
-                    color={emph == e.id ? "white" : "default"}
+                    size={global_var.media_mobile ? "1.75" : "2.5"}
+                    color={
+                      emph == e.id
+                        ? global_var.media_mobile
+                          ? "primary"
+                          : "white"
+                        : global_var.media_mobile
+                        ? "black"
+                        : "default"
+                    }
                     clickable={false}
                   />
                   <div className={cx("title", emph == e.id ? "emph" : "")}>
@@ -50,7 +60,7 @@ const Navigation = ({ nav_data, emph, onClick }) => {
         </div>
       </List>
       <List gap="0">
-        <Divider length="80%" />
+        <Divider length="90%" color="faint" />
         <div className={cx("frame-footer")}></div>
       </List>
     </div>

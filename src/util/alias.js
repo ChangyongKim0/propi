@@ -27,3 +27,63 @@ export const _centroid = (x, y) => {
 
 export const _sum = (list) => list.reduce((a, b) => a + b, 0);
 export const _avg = (list) => _sum(list) / list.length || 0;
+
+export const _fillZeros = (data, length) => {
+  if (data.length < length) {
+    return _fillZeros("0" + data, length);
+  }
+  return data;
+};
+
+export const _stringfy = (data) => {
+  if (!data) {
+    return "";
+  }
+  if (typeof data == typeof { abc: "abc" }) {
+    return "";
+  }
+  if (typeof data != typeof "abc") {
+    try {
+      return data.toString();
+    } catch {
+      return "";
+    }
+  }
+  return data;
+};
+
+export const _transformScroll = (event) => {
+  if (!event.deltaY) {
+    return;
+  }
+  event.currentTarget.scrollLeft += 0.5 * event.deltaY + 0.5 * event.deltaX;
+  event.preventDefault();
+};
+
+export const _addTransformScrollEvent = (id) => {
+  let listener = document
+    .getElementById(id)
+    .addEventListener("wheel", _transformScroll);
+  return () => {
+    document.getElementById(id).removeEventListener("wheel", listener);
+  };
+};
+
+export const _ifValidString = (
+  data,
+  successMapper = () => true,
+  err_text = false,
+  disallow_zero = false
+) => {
+  if (typeof data == typeof "11" && data != "") {
+    if (disallow_zero && data == "0") {
+      return err_text;
+    }
+    return successMapper(data);
+  }
+  return err_text;
+};
+
+export const _isValidString = (data, err_text, disallow_zero = false) => {
+  return _ifValidString(data, (data) => data, err_text, disallow_zero);
+};

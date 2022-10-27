@@ -2,6 +2,31 @@
 @import "../util/reset.css";
 // $col-txt-1: #7b8692;
 
+@font-face {
+  font-family: "KoPubDotumMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/KoPubDotumMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
+
+body {
+  // font-family: "Nanum Gothic", sans-serif;
+  // font-family: "KoPubDotumMedium";
+  font-family: "NanumSquare";
+  // font-family: "Noto Sans KR";
+}
+
+$font-primary: "NanumSquare";
+$font-l: 200;
+$font-r: 500;
+$font-b: 700;
+$font-e: 900;
+
 $col-k: #000000;
 $col-g1: #1a1a1a;
 $col-g2: #333333;
@@ -17,11 +42,19 @@ $col-g95: #f2f2f2;
 $col-w: #ffffff;
 $col-1: #7c4dff;
 $col-1-hover: #9068ff;
+$col-1-transparent: rgba(144, 104, 255, 0.3);
+$col-1-dark: #000000;
 $col-r: #d32f2f;
 $col-y: #f9a825;
 $col-y-faint: #fff8ee;
 $col-g: #4caf50;
 $col-b: #0091ea;
+$col-b-transparent: rgba(0, 145, 234, 0.3);
+
+$shd-1: 0 0 5px rgba(0, 0, 0, 0.25);
+$shd-w: 0 0 2px rgba(255, 255, 255, 1);
+
+$shd-border-w: -1px 0 2px #fff, 0 1px 2px #fff, 1px 0 2px #fff, 0 -1px 2px #fff;
 
 @mixin shd-1 {
   box-shadow: 0 0 0.25rem $col-shd-b;
@@ -82,7 +115,7 @@ $col-brd-g95: #f2f2f2;
 $col-brd-w: #ffffff;
 $col-brd-2: #7c4dff;
 
-$col-shd-b: rgba(0, 0, 0, 0.1);
+$col-shd-b: rgba(0, 0, 0, 0.25);
 $eff-shd-1: 4px 6px 22px rgba(0, 0, 0, 0.03);
 $col-shd-w: #ffffff;
 
@@ -93,7 +126,6 @@ $font-lg: 1.125rem;
 $font-xl: 1.25rem;
 
 @mixin txt-stl-1 {
-  font-family: "Noto Sans KR";
   font-weight: 500;
   font-size: 2rem;
   line-height: 2rem;
@@ -101,7 +133,6 @@ $font-xl: 1.25rem;
 }
 
 @mixin txt-stl-2 {
-  font-family: "Noto Sans KR";
   font-weight: 400;
   font-size: $font-base;
   line-height: $font-base;
@@ -109,14 +140,12 @@ $font-xl: 1.25rem;
 }
 
 @mixin txt-head {
-  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   margin: 0px;
 }
 
 @mixin txt-body {
-  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 300;
   margin: 0px;
@@ -183,28 +212,24 @@ $font-xl: 1.25rem;
 }
 
 @mixin txt-bold {
-  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
   margin: 0px;
 }
 
 @mixin txt-medium {
-  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
   margin: 0px;
 }
 
 @mixin txt-regular {
-  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: normal;
   margin: 0px;
 }
 
 @mixin txt-light {
-  font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 300;
   margin: 0px;
@@ -274,7 +299,7 @@ $font-xl: 1.25rem;
   > * {
     width: $w;
     height: $h;
-    text-align: center;
+    // text-align: center;
   }
 }
 

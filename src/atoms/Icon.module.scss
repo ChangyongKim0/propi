@@ -60,9 +60,17 @@
   }
   &-black {
     * {
-      fill: $col-b;
+      fill: $col-g3;
       // stroke: $col-b;
     }
+  }
+}
+
+.disable {
+  * {
+    border: none;
+    fill: $col-g9;
+    // stroke: $col-b;
   }
 }
 

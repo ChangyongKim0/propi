@@ -4,12 +4,14 @@ import classNames from "classnames/bind";
 import styles from "./NavigationBar.module.scss";
 import Overlay from "../atoms/Overlay";
 import Navigation from "../atoms/Navigation";
+import useGlobalVar from "../hooks/useGlobalVar";
 
 const cx = classNames.bind(styles);
 // var mapDiv = document.getElementById('map');
 // var map = new naver.maps.Map(mapDiv);
 
 const NavigationBar = ({ children, emph }) => {
+  const [global_var, setGlobalVar] = useGlobalVar();
   useEffect(() => {
     // console.log("useEffect");
   }, []);
@@ -32,7 +34,36 @@ const NavigationBar = ({ children, emph }) => {
     },
   ];
 
-  return <Navigation nav_data={nav_data} emph={emph ?? children}></Navigation>;
+  return (
+    <div className={cx("frame-box")}>
+      {!global_var.media_mobile ? (
+        <Navigation nav_data={nav_data} emph={emph ?? children}></Navigation>
+      ) : global_var.show_nav ? (
+        <Overlay
+          type="center"
+          backdrop={true}
+          full
+          onClick={{
+            Backdrop: () => {
+              setGlobalVar({ show_nav: false });
+            },
+          }}
+        >
+          <div className={cx("frame-nav")}>
+            <Navigation
+              nav_data={nav_data}
+              emph={emph ?? children}
+              onClick={() => {
+                // setGlobalVar({ show_nav: false });
+              }}
+            ></Navigation>
+          </div>
+        </Overlay>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
 };
 
 export default NavigationBar;

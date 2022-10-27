@@ -32,6 +32,15 @@ const sample_data = [
     ],
   },
   {
+    id: "law_restriction",
+    title: "상황별 규제 법령(국토교통부 제공)",
+    children: [
+      { id: "0", title: "용도지역, 지구에 따른 토지이용규제법령" },
+      { id: "1", title: "행정구역별 용도지역, 지구에 따른 규제법령" },
+      { id: "2", title: "건축물 용도에 따른 규제 안내" },
+    ],
+  },
+  {
     id: "law_hierarchy",
     title: "주요 법의 하위 법령 체계",
     children: [

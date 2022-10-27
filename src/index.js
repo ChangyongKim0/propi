@@ -9,6 +9,8 @@ import reportWebVitals from "./reportWebVitals";
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty("--vh", vh + "px");
 document.documentElement.style.setProperty("--100vh", 100 * vh + "px");
+document.documentElement.style.setProperty("--newvh", vh + "px");
+document.documentElement.style.setProperty("--new100vh", 100 * vh + "px");
 
 axios.get(API_URI).then((res, req) => {
   console.log(res);
@@ -18,6 +20,8 @@ window.addEventListener("resize", () => {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty("--vh", vh + "px");
   document.documentElement.style.setProperty("--100vh", 100 * vh + "px");
+  document.documentElement.style.setProperty("--newvh", vh + "px");
+  document.documentElement.style.setProperty("--new100vh", 100 * vh + "px");
 });
 
 ReactDOM.render(

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { GlobalVarProvider } from "./hooks/useGlobalVar";
+import { GlobalDataProvider } from "./hooks/useGlobalData";
 // import { ZIndexProvider } from "./functions/Zindexer";
 // import { BldgInfoDataProvider } from "./hooks/useBldgInfoData";
 // import { CookieDataProvider } from "./hooks/useCookieData";
@@ -20,14 +21,16 @@ class App extends Component {
   render() {
     return (
       <GlobalVarProvider>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/dashboard" component={DashboardPage} />
-          <Route exact path="/test" component={TestPage} />
-          <Route exact path="/law" component={LawPage} />
-          <Route exact path="/news" component={NewsPage} />
-          <Route component={NotFound} />
-        </Switch>
+        <GlobalDataProvider>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/dashboard" component={DashboardPage} />
+            <Route exact path="/test" component={TestPage} />
+            <Route exact path="/law" component={LawPage} />
+            <Route exact path="/news" component={NewsPage} />
+            <Route component={NotFound} />
+          </Switch>
+        </GlobalDataProvider>
       </GlobalVarProvider>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState, useReducer, useRef } from "react";
 // , { useEffect }
 
 import styles from "./Search.module.scss";
@@ -7,6 +7,7 @@ import classNames from "classnames/bind";
 import { cloneDeep } from "lodash";
 import Icon from "./Icon";
 import Divider from "./Divider";
+import useGlobalVar from "../hooks/useGlobalVar";
 
 const cx = classNames.bind(styles);
 
@@ -85,6 +86,8 @@ const Search = ({ onClick }) => {
     }
   };
 
+  const search_field = useRef(null);
+
   // address_name: "서울 마포구 연남동 568-23";
   // category_group_code: "FD6";
   // category_group_name: "음식점";
@@ -130,6 +133,8 @@ const Search = ({ onClick }) => {
       }
     });
   }, []);
+
+  const [global_var, setGlobalVar] = useGlobalVar();
 
   const forceActivateSearchResults = () => {
     handleSearchResults({
@@ -178,90 +183,141 @@ const Search = ({ onClick }) => {
 
   return (
     <div
-      tabIndex="0"
-      className={cx(
-        "wrapper",
-        search_results.data.length > 0 ? "dropdown" : ""
-      )}
-      onBlur={(e) => {
-        // console.log(e);
-        handleSearchResults({ type: "update", data: [] });
-      }}
+      className={cx("wrapper", search_results.data.length > 0 ? "focused" : "")}
     >
-      <div className={cx("frame-search")}>
-        <input
-          id="input_search"
-          className={cx("text-field")}
-          type="text"
-          placeholder="주소 입력"
-          onFocus={() => {
-            forceSearch();
-          }}
-        ></input>
-        {/* <UseAutocomplete /> */}
-        <div onMouseDown={forceActivateSearchResults}>
-          <Icon
-            type="search"
-            color="primary"
-            size="1.75"
-            onMouseDown={forceActivateSearchResults}
-          />
+      <div
+        tabIndex="0"
+        className={cx(
+          "frame-field",
+          search_results.data.length > 0 ? "dropdown" : ""
+        )}
+        onBlur={(e) => {
+          // console.log(e);
+          handleSearchResults({ type: "update", data: [] });
+        }}
+      >
+        {global_var.media_mobile ? (
+          search_results.data.length > 0 ? (
+            <div
+              key="1"
+              className={cx("frame-button")}
+              onClick={() => {
+                handleSearchResults({ type: "update", data: [] });
+              }}
+            >
+              <Icon type="left" color="primary" size="1.75" />
+            </div>
+          ) : (
+            <div
+              key="2"
+              className={cx("frame-button")}
+              onClick={() => {
+                search_field.current.focus();
+                search_field.current.setSelectionRange(
+                  search_field.current.value.length,
+                  search_field.current.value.length
+                );
+                forceSearch();
+              }}
+            >
+              <Icon type="search" color="primary" size="1.75" />
+            </div>
+          )
+        ) : (
+          <></>
+        )}{" "}
+        <div className={cx("frame-button", "full")}>
+          <input
+            id="input_search"
+            className={cx("text-field")}
+            type="text"
+            placeholder="주소 입력하기"
+            onFocus={() => {
+              forceSearch();
+            }}
+            ref={search_field}
+          ></input>
         </div>
-      </div>
-      {search_results.data.length > 0 ? (
-        <div className={cx("frame-drop-down")}>
-          <div id="input_search_drop_down" className={cx("drop-down")}>
-            {
-              // eslint-disable-next-line react-hooks/exhaustive-deps
-              search_results.data.map((e, idx) => (
-                // eslint-disable-next-line
-                <>
-                  {idx == 0 ? <></> : <Divider length="95%" />}
-                  <div
-                    key={idx}
-                    id={"input_search_" + idx}
-                    tabIndex="-1"
-                    className={cx(
-                      "frame-list",
-                      search_results.focus == idx ? "focused" : ""
+        {!global_var.media_mobile ? (
+          <div
+            className={cx("frame-button")}
+            onMouseDown={forceActivateSearchResults}
+          >
+            <Icon type="search" color="primary" size="1.75" />
+          </div>
+        ) : (
+          <div
+            className={cx("frame-button")}
+            onMouseDown={() => {
+              setGlobalVar({ show_nav: true });
+            }}
+          >
+            <Icon type="three_bay" color="primary" size="1.75" />
+          </div>
+        )}
+        {search_results.data.length > 0 ? (
+          <div className={cx("frame-drop-down")}>
+            <div id="input_search_drop_down" className={cx("drop-down")}>
+              {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                search_results.data.map((e, idx) => (
+                  // eslint-disable-next-line
+                  <>
+                    {idx == 0 ? (
+                      <></>
+                    ) : (
+                      <Divider
+                        length={global_var.media_mobile ? "90%" : "95%"}
+                        color={global_var.media_mobile ? "faint" : "grey"}
+                      />
                     )}
-                    onMouseDown={() => {
-                      onClick(e);
-                    }}
-                  >
-                    <div className={cx("title")}>
-                      {emphasizeText(e.address_name, input_search.value)}
-                    </div>
-                    <div className={cx("sub-title")}>
-                      {e.road_address_name == ""
-                        ? "-"
-                        : emphasizeText(
-                            e.road_address_name,
+                    <div
+                      key={idx}
+                      id={"input_search_" + idx}
+                      tabIndex="-1"
+                      className={cx(
+                        "frame-list",
+                        search_results.focus == idx ? "focused" : ""
+                      )}
+                      onMouseDown={() => {
+                        onClick(e);
+                      }}
+                    >
+                      <div className={cx("title")}>
+                        {emphasizeText(e.address_name, input_search.value)}
+                      </div>
+                      <div className={cx("sub-title")}>
+                        {e.road_address_name == ""
+                          ? "-"
+                          : emphasizeText(
+                              e.road_address_name,
+                              input_search.value
+                            )}
+                      </div>
+                      <div className={cx("frame-value")}>
+                        <div className={cx("text-bold")}>
+                          {e.place_name == ""
+                            ? "-"
+                            : emphasizeText(e.place_name, input_search.value)}
+                        </div>
+                        <div className={cx("text")}>
+                          {emphasizeText(
+                            formatCategory(e.category_name),
                             input_search.value
                           )}
-                    </div>
-                    <div className={cx("frame-value")}>
-                      <div className={cx("text-bold")}>
-                        {e.place_name == ""
-                          ? "-"
-                          : emphasizeText(e.place_name, input_search.value)}
-                      </div>
-                      <div className={cx("text")}>
-                        {emphasizeText(
-                          formatCategory(e.category_name),
-                          input_search.value
-                        )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </>
-              ))
-            }
+                  </>
+                ))
+              }
+              <div className={cx("frame-bottom")}></div>
+            </div>
           </div>
-        </div>
-      ) : (
-        <></>
-      )}
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 };

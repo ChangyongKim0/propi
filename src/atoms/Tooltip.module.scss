@@ -2,8 +2,7 @@
 
 .wrapper {
   position: absolute;
-  bottom: -0.2rem;
-  transform: translate(0, 100%);
+
   transition: all 300ms;
   opacity: 1;
   z-index: 2;
@@ -26,13 +25,68 @@
 }
 
 .align {
-  &-left {
+  &-bottom-left {
+    bottom: -0.5rem;
     left: 0;
+    transform: translate(0, 100%);
   }
-  &-right {
+  &-bottom-right {
+    bottom: -0.2rem;
     right: 0;
+    transform: translate(0, 100%);
   }
-  &-center {
+  &-bottom-center {
+    bottom: -0.2rem;
+    left: 50%;
+    transform: translate(-50%, 100%);
+  }
+  &-top-left {
+    top: -0.5rem;
+    left: 0;
+    transform: translate(0, -100%);
+  }
+  &-top-right {
+    top: -0.2rem;
+    right: 0;
+    transform: translate(0, -100%);
+  }
+  &-top-center {
+    top: -0.2rem;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  }
+  &-left-top {
+    left: -0.5rem;
+    top: 0;
+    transform: translate(-100%, 0);
+  }
+  &-right-top {
+    right: -0.5rem;
+    top: 0;
+    transform: translate(100%, 0);
+  }
+  &-left-center {
+    left: -0.5rem;
+    top: 50%;
+    transform: translate(-100%, -50%);
+  }
+  &-right-center {
+    right: -0.5rem;
+    top: 50%;
+    transform: translate(100%, -50%);
+  }
+  &-left-bottom {
+    left: -0.5rem;
+    bottom: 0;
+    transform: translate(-100%, 0);
+  }
+  &-right-bottom {
+    right: -0.5rem;
+    bottom: 0;
+    transform: translate(100%, 0);
+  }
+  &-default {
+    bottom: -0.5rem;
     left: 50%;
     transform: translate(-50%, 100%);
   }

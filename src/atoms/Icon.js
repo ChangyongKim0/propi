@@ -46,72 +46,75 @@ const Icon = ({
   use_tooltip,
   tooltip,
   size,
+  disable,
+  tooltip_align,
 }) => {
   // 아래에 개별 아이콘 호출어 추가
   const getIcon = (type) => {
+    const default_style = { width: "1000px", height: "1000px" };
     switch (type) {
       case "add":
-        return <Add />;
+        return <Add {...default_style} />;
       case "analysis":
-        return <Analysis />;
+        return <Analysis {...default_style} />;
       case "autocad":
-        return <Autocad />;
+        return <Autocad {...default_style} />;
       case "building":
-        return <Building />;
+        return <Building {...default_style} />;
       case "check":
-        return <Check />;
+        return <Check {...default_style} />;
       case "city":
-        return <City />;
+        return <City {...default_style} />;
       case "close":
-        return <Close />;
+        return <Close {...default_style} />;
       case "copy":
-        return <Copy />;
+        return <Copy {...default_style} />;
       case "dashboard":
-        return <Dashboard />;
+        return <Dashboard {...default_style} />;
       case "delete":
-        return <Delete />;
+        return <Delete {...default_style} />;
       case "detail":
-        return <Detail />;
+        return <Detail {...default_style} />;
       case "down":
-        return <Down />;
+        return <Down {...default_style} />;
       case "erase":
-        return <Erase />;
+        return <Erase {...default_style} />;
       case "excel":
-        return <Excel />;
+        return <Excel {...default_style} />;
       case "external_link":
-        return <ExternalLink />;
+        return <ExternalLink {...default_style} />;
       case "illustrator":
-        return <Illustrator />;
+        return <Illustrator {...default_style} />;
       case "land":
-        return <Land />;
+        return <Land {...default_style} />;
       case "law":
-        return <Law />;
+        return <Law {...default_style} />;
       case "left":
-        return <Left />;
+        return <Left {...default_style} />;
       case "map":
-        return <Map />;
+        return <Map {...default_style} />;
       case "news":
-        return <News />;
+        return <News {...default_style} />;
       case "pick_each":
-        return <PickEach />;
+        return <PickEach {...default_style} />;
       case "pick_from_data":
-        return <PickFromData />;
+        return <PickFromData {...default_style} />;
       case "pick_range":
-        return <PickRange />;
+        return <PickRange {...default_style} />;
       case "right":
-        return <Right />;
+        return <Right {...default_style} />;
       case "search":
-        return <Search />;
+        return <Search {...default_style} />;
       case "share":
-        return <Share />;
+        return <Share {...default_style} />;
       case "three_bay":
-        return <ThreeBay />;
+        return <ThreeBay {...default_style} />;
       case "up":
-        return <Up />;
+        return <Up {...default_style} />;
       case "user":
-        return <User />;
+        return <User {...default_style} />;
       default:
-        return <User />;
+        return <User {...default_style} />;
     }
   };
 
@@ -122,8 +125,9 @@ const Icon = ({
       className={cx(
         "wrapper",
         "color-" + color,
-        use_tooltip ? "" : "hide-tooltip",
-        clickable ? "clickable" : ""
+        disable ? "disable" : "",
+        use_tooltip && !disable ? "" : "hide-tooltip",
+        clickable && !disable ? "clickable" : ""
       )}
       onMouseOver={() => {
         setMouseOver(true);
@@ -131,7 +135,7 @@ const Icon = ({
       onMouseLeave={() => {
         setMouseOver(false);
       }}
-      onClick={clickable ? onClick : () => {}}
+      onClick={clickable && !disable ? onClick : () => {}}
       style={{
         height: size + "rem",
         width: size + "rem",
@@ -139,7 +143,11 @@ const Icon = ({
       }}
     >
       {getIcon(type)}
-      <Tooltip visible={use_tooltip && mouse_over} tooltip={tooltip} />
+      <Tooltip
+        visible={use_tooltip && !disable && mouse_over}
+        tooltip={tooltip}
+        align={tooltip_align}
+      />
     </div>
   );
 };
@@ -153,6 +161,8 @@ Icon.defaultProps = {
   },
   use_tooltip: false,
   size: 1.5,
+  disable: false,
+  tooltip_align: "default",
 };
 
 export default Icon;

@@ -5,30 +5,6 @@
   flex-direction: row-reverse;
 }
 
-.style {
-  &-default {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-g3;
-    }
-  }
-  &-total {
-    * {
-      @include txt-regular();
-      @include txt-14();
-      color: $col-txt-w;
-    }
-  }
-  &-detail {
-    * {
-      @include txt-light();
-      @include txt-11();
-      color: $col-txt-g5;
-    }
-  }
-}
-
 .frame {
   &-top {
     // @include column(auto, auto, 0px);
@@ -62,7 +38,7 @@
     width: calc(100% - 2rem);
     text-align: left;
     background-color: $col-w;
-    font-weight: bold;
+    font-weight: $font-e;
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.3s;
@@ -72,25 +48,13 @@
   }
   &-subsection {
     padding: 0.5rem 1rem;
-    font-weight: 400;
+    font-weight: $font-b;
     font-size: 1rem;
-    color: $col-g3;
+    color: $col-g5;
   }
   &-total {
     @include txt-bold();
     @include txt-21();
-  }
-  &-detail {
-    @include txt-bold();
-  }
-}
-
-.unit {
-  &-default {
-    @include txt-bold();
-  }
-  &-total {
-    @include txt-bold();
   }
   &-detail {
     @include txt-bold();

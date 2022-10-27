@@ -7,8 +7,8 @@
   min-height: 2rem;
   border-radius: 5px;
   background-color: $col-w;
-  border: 1.5px solid $col-g8;
-  box-shadow: 0 0 0.5rem $col-g8;
+  border: 2px solid $col-g8;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
   overflow: hidden;
   &.style {
     &-default {
@@ -59,36 +59,35 @@
   }
   &-text {
     color: $col-g2;
+    font-weight: $font-b;
   }
 }
 
 .action {
-  font-weight: 500;
+  font-weight: $font-e;
   color: $col-1;
 }
 
 @media (max-width: 600px) {
   .wrapper {
     @include row(auto, auto, 1rem);
-    justify-content: center;
+    width: calc(100vw - 4rem);
+    justify-content: space-between;
     min-width: 0px;
     min-height: 0.75rem;
     height: 0.9rem;
-    padding-left: 0.3rem;
-    padding-right: 0.6rem;
-    border-radius: 5rem;
-    background-color: $col-w;
-    border: 1.5px solid $col-g8;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: $col-1;
     box-shadow: 0 0 0.5rem $col-g8;
     overflow: hidden;
     &.style {
       &-default {
         border-color: $col-1;
-        padding-left: 0.6rem;
       }
     }
     &:hover {
-      background-color: $col-w;
+      background-color: $col-1;
     }
     cursor: pointer;
   }
@@ -105,7 +104,12 @@
       line-height: 1.05;
     }
     &-text {
-      color: $col-g2;
+      color: $col-g9;
+      font-weight: $font-r;
     }
+  }
+  .action {
+    color: $col-w;
+    font-weight: $font-b;
   }
 }

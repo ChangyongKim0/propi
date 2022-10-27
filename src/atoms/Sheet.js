@@ -6,6 +6,7 @@ import classNames from "classnames/bind";
 import Card from "./Card";
 import List from "./List";
 import Divider from "./Divider";
+import Overlay from "./Overlay";
 
 const cx = classNames.bind(styles);
 
@@ -17,7 +18,9 @@ const Sheet = ({ children, type, nav_data, emph, onClick }) => {
         <div className={cx("frame-top")}>
           <div className={cx("frame-top-content")}>{children[0]}</div>
         </div>
-        <div className={cx("frame-content")}>{children[1]}</div>
+        <div id="Sheet_frame_content" className={cx("frame-content")}>
+          {Array.from(children).filter((e, idx) => idx != 0)}
+        </div>
       </div>
     </div>
   );
