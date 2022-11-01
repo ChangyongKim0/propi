@@ -29,21 +29,35 @@ import ServiceCardWithLink from "../component/ServiceCardWithLink";
 import IFrame from "../atoms/IFrame";
 import SnackbarScenario from "../component/SnackbarScenario";
 import useGlobalVar from "../hooks/useGlobalVar";
+import parse, { DxfParser } from "dxf-parser";
+import { API_URI, DATA_PATH, API_URI_PY } from "../shortcut";
+import axios from "axios";
 
 const cx = classNames.bind(styles);
 // var mapDiv = document.getElementById('map');
 // var map = new naver.maps.Map(mapDiv);
 
 const TestPage = () => {
-  useEffect(() => {
-    // console.log("useEffect");
-  }, []);
-
   const [global_var, setGlobalVar] = useGlobalVar();
 
   const [backdrop, setBackdrop] = useState(false);
   const [overlay_stack, setOverlayStack] = useState(false);
   const [close, setClose] = useState(false);
+
+  useEffect(() => {
+    axios({ url: API_URI_PY, method: "GET", responseType: "blob" }).then(
+      (response) => {
+        console.log(response);
+        const blob = response.data;
+        const path = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = path;
+        link.download = "temp.dxf";
+        link.click();
+        link.remove();
+      }
+    );
+  }, []);
 
   return (
     <div className={cx("wrapper")}>
