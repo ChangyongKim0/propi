@@ -27,7 +27,6 @@ const Overlay = ({
   const [animation, setAnimation] = useState(true);
 
   useEffect(() => {
-    console.log(in_container);
     if (in_container) {
       const handleParentScrollConstant = () => {
         handleParentScroll(in_container);
@@ -40,11 +39,6 @@ const Overlay = ({
       );
       const container = document.getElementById(in_container);
       if (in_container && element && container) {
-        console.log(container);
-        console.log(in_container);
-        console.log(element);
-        console.log("ddddddddddd");
-        console.log(container?.clientWidth);
         element.style.height = container?.clientHeight + "px";
         element.style.width = container?.clientWidth + "px";
         element.style.marginTop = container?.scrollTop + "px";

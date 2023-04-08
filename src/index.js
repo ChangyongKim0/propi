@@ -1,12 +1,12 @@
 import axios from "axios";
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import { IP_URI, API_URI } from "./shortcut";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-let vh = window.innerHeight * 0.01;
+let vh = (window.innerHeight - 0.5) * 0.01;
 document.documentElement.style.setProperty("--vh", vh + "px");
 document.documentElement.style.setProperty("--100vh", 100 * vh + "px");
 document.documentElement.style.setProperty("--newvh", vh + "px");
@@ -24,11 +24,12 @@ window.addEventListener("resize", () => {
   document.documentElement.style.setProperty("--new100vh", 100 * vh + "px");
 });
 
-ReactDOM.render(
+const rootNode = document.getElementById("root");
+
+ReactDOM.createRoot(rootNode).render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
-  document.getElementById("root")
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

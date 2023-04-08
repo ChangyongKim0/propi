@@ -1,6 +1,18 @@
 @import "../util/style.scss";
 
 .frame {
+  &-header {
+    position: relative;
+  }
+  &-header-button {
+    position: absolute;
+    bottom: calc(-1 * 2.75rem);
+    right: 0.5rem;
+    z-index: 1;
+  }
+  &-top {
+    min-height: 0.5rem;
+  }
   &-data {
     width: calc(100% - 2rem);
     background-color: $col-w;

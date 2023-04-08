@@ -1,3 +1,5 @@
+import { _formatThousandSeperator } from "./alias";
+
 export const formatUnit = (unit, unit_type) => {
   switch (unit_type) {
     case "py":
@@ -107,15 +109,6 @@ const _adaptUnitType = (data, unit, unit_type) => {
     default:
       return data;
   }
-};
-
-const _formatThousandSeperator = (data) => {
-  const seperated_number = data.toString().split(".");
-  seperated_number[0] = seperated_number[0].replace(
-    /\B(?=(\d{3})+(?!\d))/g,
-    ","
-  );
-  return seperated_number.join(".");
 };
 
 const _formatTenThousandShrinker = (number) => {

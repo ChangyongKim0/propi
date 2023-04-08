@@ -47,6 +47,10 @@
     width: 3rem;
     height: 3rem;
   }
+  &-element-stack {
+    position: fixed;
+    display: none;
+  }
 }
 
 .title {

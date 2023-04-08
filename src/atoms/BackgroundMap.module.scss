@@ -6,14 +6,24 @@
 }
 
 .map {
-  width: 100%;
-  height: 100%;
-  position: relative;
+  width: calc(100% + 512px);
+  height: calc(100% + 512px);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  &.road_view,
+  &.measure_distance,
+  &.measure_area {
+    cursor: none !important;
+    & > * {
+      cursor: none !important;
+    }
+  }
 }
 
-.map > :first-child > * > :last-child {
-  pointer-events: none; // 커스텀 오버레이 선택 제거
-}
+// .map > :first-child > * > :last-child {
+//   pointer-events: none; // 커스텀 오버레이 선택 제거
+// }
 
 .cursor-follower {
   position: fixed;
@@ -21,15 +31,28 @@
   top: 0;
   left: 0;
   transform: translate(-50%, -50%);
+  pointer-events: none;
   &.road_view {
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 3px solid $col-b;
-    border-radius: 100px;
-    pointer-events: none;
-    box-shadow: 0 0 5px $col-shd-b;
-    transform: translate(-50%, -90%);
-    background-color: $col-b-transparent;
+    & > * {
+      width: 0.5rem;
+      height: 0.5rem;
+      border: 3px solid $col-w;
+      border-radius: 100px;
+      box-shadow: 0 0 5px $col-shd-b;
+      background-color: $col-b;
+    }
+  }
+  &.measure_distance {
+    transform: translate(0px, -3px);
+    & > * {
+      filter: drop-shadow(0 0 2px $col-shd-b);
+    }
+  }
+  &.measure_area {
+    transform: translate(0px, -3px);
+    & > * {
+      filter: drop-shadow(0 0 2px $col-shd-b);
+    }
   }
   // &.none {
   //   background-color: $col-k;

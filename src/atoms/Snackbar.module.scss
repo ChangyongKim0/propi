@@ -3,20 +3,19 @@
 .wrapper {
   @include row(auto, auto, 1rem);
   justify-content: space-between;
-  padding: 0.5rem;
-  min-height: 2rem;
-  border-radius: 5px;
+  padding: 1rem;
+  min-height: 1rem;
+  border-radius: 0.5rem;
   background-color: $col-w;
-  border: 2px solid $col-g8;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
   overflow: hidden;
   &.style {
     &-default {
-      border-color: $col-1;
+      background-color: $col-g2;
     }
   }
   &:hover {
-    background-color: $col-g95;
+    background-color: $col-g1;
   }
   cursor: pointer;
 }
@@ -24,7 +23,7 @@
 .frame {
   &-icon {
     width: 1.8rem;
-    height: 1.8rem;
+    height: 0.8rem;
     border-radius: 1rem;
     border: 0.1rem solid $col-w;
     font-weight: bold;
@@ -58,14 +57,14 @@
     }
   }
   &-text {
-    color: $col-g2;
+    color: $col-g8;
     font-weight: $font-b;
   }
 }
 
 .action {
   font-weight: $font-e;
-  color: $col-1;
+  color: $col-w;
 }
 
 @media (max-width: 600px) {
@@ -104,7 +103,7 @@
       line-height: 1.05;
     }
     &-text {
-      color: $col-g9;
+      color: $col-w;
       font-weight: $font-r;
     }
   }

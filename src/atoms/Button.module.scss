@@ -8,6 +8,10 @@
   cursor: pointer;
   font-weight: bold;
   color: $col-g2;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .shape {
@@ -22,11 +26,17 @@
 .color {
   &-default {
     background-color: $col-w;
-    border: 1.5px solid $col-g8;
+    border: 1px solid $col-g8;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
     &:hover {
       background-color: $col-g95;
       // @include shd-2;
     }
+    &:active {
+      background-color: $col-g9;
+      transition: all 0.1s;
+    }
+    transition: all 0.3s;
   }
   &-transparent {
     &:hover {

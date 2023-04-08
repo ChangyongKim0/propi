@@ -9,7 +9,7 @@
   @include column(100%, auto, 0px);
   width: 21rem;
   max-width: 40vw;
-  height: --100vh;
+  height: var(--new100vh);
   border-right: 1.5px solid $col-g8;
   background-color: $col-g95;
   z-index: 2;
@@ -24,10 +24,11 @@
   }
   &-content {
     position: relative;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     scroll-behavior: smooth;
     &::-webkit-scrollbar {
-      width: 0.3rem;
+      width: 0.25rem;
       height: 0.25rem;
       &-thumb {
         height: 10%;
@@ -36,9 +37,6 @@
         &:hover {
           background-color: $col-bgd-g3;
         }
-      }
-      &-track {
-        // background-color: $col-bgd-g9;
       }
       &:hover {
         width: 0.5rem;

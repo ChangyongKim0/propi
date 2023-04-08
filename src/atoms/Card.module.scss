@@ -4,10 +4,15 @@
   position: relative;
   @include column(auto, auto, 0rem);
   align-items: flex-start;
-  overflow: visible;
   transition: all 0.3s;
   width: fit-content;
   pointer-events: all;
+  &.show {
+    overflow: visible;
+  }
+  &.hide {
+    overflow: hidden;
+  }
 }
 
 .shape {

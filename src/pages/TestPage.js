@@ -44,20 +44,20 @@ const TestPage = () => {
   const [overlay_stack, setOverlayStack] = useState(false);
   const [close, setClose] = useState(false);
 
-  useEffect(() => {
-    axios({ url: API_URI_PY, method: "GET", responseType: "blob" }).then(
-      (response) => {
-        console.log(response);
-        const blob = response.data;
-        const path = window.URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = path;
-        link.download = "temp.dxf";
-        link.click();
-        link.remove();
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   axios({ url: API_URI_PY, method: "GET", responseType: "blob" }).then(
+  //     (response) => {
+  //       console.log(response);
+  //       const blob = response.data;
+  //       const path = window.URL.createObjectURL(blob);
+  //       const link = document.createElement("a");
+  //       link.href = path;
+  //       link.download = "temp.dxf";
+  //       link.click();
+  //       link.remove();
+  //     }
+  //   );
+  // }, []);
 
   return (
     <div className={cx("wrapper")}>

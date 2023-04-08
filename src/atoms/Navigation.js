@@ -29,7 +29,7 @@ const Navigation = ({ nav_data, emph, onClick }) => {
         <div className={cx("frame-main")}>
           {nav_data.map((e, idx) => {
             return (
-              <Link id={idx} to={e.link_to}>
+              <Link key={idx} id={idx} to={e.link_to}>
                 <div
                   className={cx("frame-button", emph == e.id ? "emph" : "")}
                   onClick={() => {

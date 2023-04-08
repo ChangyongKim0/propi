@@ -15,6 +15,7 @@ import {
   LawPage,
   NewsPage,
   NotFound,
+  ThreeJsPage,
 } from "./pages";
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
             <Route exact path="/test" component={TestPage} />
             <Route exact path="/law" component={LawPage} />
             <Route exact path="/news" component={NewsPage} />
+            <Route exact path="/threejs" component={ThreeJsPage} />
             <Route component={NotFound} />
           </Switch>
         </GlobalDataProvider>

@@ -114,6 +114,10 @@ export const GlobalVarProvider = ({ children }) => {
     now_visited: true,
     refreshed: true,
     media_mobile: true,
+    setElementStack: () => {},
+    getElementStackByIdAndElementType: () => {},
+    prevent_map_click: false,
+    sub_function: "none",
   });
 
   useEffect(() => {

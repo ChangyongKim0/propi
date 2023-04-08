@@ -19,6 +19,7 @@ const Card = ({
   tooltip,
   tight,
   color,
+  show_overflow,
 }) => {
   const [mouse_over, setMouseOver] = useState(false);
 
@@ -30,7 +31,8 @@ const Card = ({
         clickable ? "clickable" : "",
         transparent ? "transparent" : "solid",
         tight ? "tight" : "full",
-        border ? "border" : "naked"
+        border ? "border" : "naked",
+        show_overflow ? "show" : "hide"
       )}
       style={
         color == "#ffffff"
@@ -68,6 +70,7 @@ Card.defaultProps = {
   use_tooltip: false,
   tight: true,
   color: "#ffffff",
+  show_overflow: true,
 };
 
 export default Card;

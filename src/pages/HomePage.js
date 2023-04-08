@@ -12,10 +12,10 @@ import useGlobalVar, { getCookie } from "../hooks/useGlobalVar";
 import MapSheet from "../component/MapSheet";
 import Snackbar from "../atoms/Snackbar";
 import SnackbarScenario from "../component/SnackbarScenario";
-import IFrame from "../atoms/IFrame";
 import Search from "../atoms/Search";
 import TabBar from "../atoms/TabBar";
 import MapButton from "../component/MapButton";
+import useElementStack from "../hooks/useElementStack";
 
 const cx = classNames.bind(styles);
 // var mapDiv = document.getElementById('map');
@@ -23,10 +23,11 @@ const cx = classNames.bind(styles);
 
 const HomePage = () => {
   const [global_var, setGlobalVar] = useGlobalVar();
-  const [overlay_stack, setOverlayStack] = useState(false);
+  const [element_stack, setElementStack, getElementStackByIdAndElementType] =
+    useElementStack();
 
   useEffect(() => {
-    // console.log("useEffect");
+    setGlobalVar({ setElementStack, getElementStackByIdAndElementType });
   }, []);
 
   const sub_button_data = [
@@ -34,11 +35,13 @@ const HomePage = () => {
       multiple: true,
       vertical: true,
       unselectable: true,
+      title: "추가기능",
+      align: "right",
       multiple_data: [
         { id: 0, text: "", active: true },
         { id: 1, text: "로드뷰" },
-        { id: 2, text: "길이" },
-        { id: 3, text: "면적" },
+        { id: 2, text: "거리재기" },
+        { id: 3, text: "면적재기" },
       ],
       onClick: (res) => {
         switch (res.id) {
@@ -49,10 +52,10 @@ const HomePage = () => {
             setGlobalVar({ sub_function: "road_view" });
             break;
           case 2:
-            setGlobalVar({ sub_function: "distance" });
+            setGlobalVar({ sub_function: "measure_distance" });
             break;
           case 3:
-            setGlobalVar({ sub_function: "area" });
+            setGlobalVar({ sub_function: "measure_area" });
         }
         console.log(global_var);
       },
@@ -62,6 +65,7 @@ const HomePage = () => {
   const getDefaultButtonData = (map_type = "normal") => [
     {
       multiple: true,
+      title: "지도 스타일",
       multiple_data: [
         { id: 0, text: "일반", active: map_type == "normal" },
         { id: 1, text: "위성", active: map_type == "satelite" },
@@ -87,6 +91,7 @@ const HomePage = () => {
     },
     {
       multiple: true,
+      title: "분석할 내용",
       multiple_data: [
         { id: 0, text: "개별 필지 정보 조회", active: true },
         { id: 1, text: "여러 필지 분석" },
@@ -114,8 +119,16 @@ const HomePage = () => {
           index: 3,
           data: [
             {
-              button: true,
-              text: "구역계 편집",
+              multiple: true,
+              title: "구역계 편집",
+              multiple_data: [
+                { id: 0, text: "새로 그리기", active: true },
+                { id: 1, text: "구역 추가하기" },
+                { id: 2, text: "구역 자르기" },
+              ],
+              onClick: (res) => {
+                onClickButton(res.text);
+              },
             },
           ],
         });
@@ -126,6 +139,7 @@ const HomePage = () => {
           data: [
             {
               multiple: true,
+              title: "구역 설정 방식",
               multiple_data: [
                 { id: 0, text: "하나씩 선택하기", active: true },
                 { id: 1, text: "구역계 그리기" },
@@ -147,6 +161,7 @@ const HomePage = () => {
           data: [
             {
               multiple: true,
+              title: "사업 진행 방식",
               multiple_data: [
                 { id: 0, text: "주택건설", active: true },
                 { id: 1, text: "도시개발" },
@@ -161,20 +176,40 @@ const HomePage = () => {
       case "지구단위계획 확인":
         handleButtonData({ index: 2, data: [] });
         break;
+      case "새로 그리기":
+        handleButtonData({ index: 4, data: [] });
+        break;
+      case "구역 추가하기":
+        handleButtonData({ index: 4, data: [] });
+        break;
+      case "구역 자르기":
+        handleButtonData({ index: 4, data: [] });
+        break;
       default:
         handleButtonData({ index: 3, data: [] });
     }
   };
 
+  useEffect(() => {
+    element_stack.map((e) => {
+      e.callback?.();
+      e.callback = () => {};
+    });
+  }, [element_stack]);
+
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("frame-content")}>
-        <BackgroundMap></BackgroundMap>
+      <div id="map-wrapper" className={cx("frame-content")}>
+        <BackgroundMap>
+          <div>ddd</div>
+        </BackgroundMap>
         {global_var.media_mobile ? (
           <>
-            {button_data.map((e, idx) => {
-              return idx == 1 ? <TabBar {...e} /> : <></>;
-            })}
+            {button_data
+              .filter((_, idx) => idx == 1)
+              .map((e2, idx2) => {
+                return <TabBar key={idx2} {...e2} />;
+              })}
             <div className={cx("frame-button-field")}>
               <List align="right">
                 <MapButton icon="map" />
@@ -198,7 +233,12 @@ const HomePage = () => {
             </Overlay>
           </>
         ) : (
-          <Overlay key="2" in_container="map" backdrop={false} type="default">
+          <Overlay
+            key="2"
+            in_container="map-wrapper"
+            backdrop={false}
+            type="default"
+          >
             <List type="row" attach="space" align="left" disable>
               <List type="row" multiple_line disable>
                 {button_data.map((e, idx) => {
@@ -233,22 +273,6 @@ const HomePage = () => {
             </List>
           </Overlay>
         )}
-        {global_var.show_iframe ? (
-          <Overlay id="iframe" in_container="map" type="center" backdrop close>
-            <IFrame
-              url={global_var.iframe_url}
-              onClick={{
-                Close: () => {
-                  setGlobalVar({ show_iframe: false });
-                },
-                ExternalLink: () => {},
-                Share: () => {},
-              }}
-            />
-          </Overlay>
-        ) : (
-          <></>
-        )}
       </div>
       {!global_var.media_mobile && global_var.media_mobile !== undefined ? (
         <MapSheet />
@@ -257,6 +281,11 @@ const HomePage = () => {
       )}
       <NavigationBar>map</NavigationBar>
       {global_var.snackbar ? <SnackbarScenario /> : <></>}
+      <div className={cx("frame-element-stack")}>
+        {element_stack.map((e, idx) => {
+          return <div key={e.element_type + e.id}>{e.element}</div>;
+        })}
+      </div>
     </div>
   );
 };

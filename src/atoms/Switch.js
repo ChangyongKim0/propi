@@ -8,6 +8,7 @@ import useToggle from "../hooks/useToggle";
 const cx = classNames.bind(styles);
 
 const Switch = ({
+  title,
   on,
   disabled,
   onClick,
@@ -20,6 +21,7 @@ const Switch = ({
   children,
   vertical,
   unselectable,
+  align,
 }) => {
   const [new_on, toggleNewOn] = useToggle(on);
   const [active_idx, setActiveIdx] = useState(
@@ -53,12 +55,18 @@ const Switch = ({
       }
       style={{ maxWidth: max_width }}
     >
+      {multiple && title ? (
+        <div className={cx("title", "align-" + align)}>{title}</div>
+      ) : (
+        <></>
+      )}
       {multiple ? (
         <div
           className={cx(
             "frame-multiple-switch",
             "color-" + color,
-            vertical ? "vertical" : "horizontal"
+            vertical ? "vertical" : "horizontal",
+            "align-" + align
           )}
         >
           {multiple_data.map((e, idx) =>
@@ -82,7 +90,7 @@ const Switch = ({
                 {e.text}
               </div>
             ) : (
-              <></>
+              <div key={idx} style={{ display: "none" }}></div>
             )
           )}
         </div>

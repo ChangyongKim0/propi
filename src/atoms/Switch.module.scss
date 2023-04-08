@@ -26,7 +26,7 @@
   &-multiple-switch {
     position: relative;
     &.vertical {
-      @include column(auto, auto, 0.3rem);
+      @include column(auto, auto, 0rem);
     }
     &.horizontal {
       @include row(auto, auto, 0.3rem);
@@ -40,6 +40,11 @@
     &.color {
       &-white {
         background-color: $col-w;
+      }
+    }
+    &.align {
+      &-right {
+        align-items: flex-end;
       }
     }
   }
@@ -62,6 +67,7 @@
   }
   &-multiple-button {
     font-weight: bold;
+    white-space: nowrap;
     color: $col-g2;
     padding: 0.4rem 0.5rem;
     border-radius: 0.5rem;
@@ -133,6 +139,18 @@
 .disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+.title {
+  padding: 8px 13px 0 13px;
+  font-size: 14px;
+  font-weight: bold;
+  color: $col-g5;
+  &.align {
+    &-right {
+      text-align: right;
+    }
+  }
 }
 
 @media (max-width: 600px) {

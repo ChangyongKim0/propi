@@ -15,13 +15,14 @@ import useGlobalData from "../hooks/useGlobalData";
 import formatMapApiData from "../util/formatMapApiData";
 import Overlay from "../atoms/Overlay";
 import Divider from "../atoms/Divider";
+import Button from "../atoms/Button";
 
 const cx = classNames.bind(styles);
 
 const service_card_list = [
   {
     link_to: "/",
-    src_img: "/img/hey.png",
+    src_img: "/img/illust_map_page.png",
     title: "지도로 분석하기",
     text_illust: [
       "토지와 건물 등의 다양한 정보를 ",
@@ -30,7 +31,7 @@ const service_card_list = [
   },
   {
     link_to: "/law",
-    src_img: "/img/hey.png",
+    src_img: "/img/illust_law_page.png",
     title: "관계법령 챙겨보기",
     text_illust: [
       "건축과 관련된 법을 모두 확인하고",
@@ -110,7 +111,7 @@ const MapSheet = ({ force_data, force_state }) => {
 
   return (
     <Sheet>
-      <div>
+      <div className={cx("frame-header")}>
         <div className={cx("frame-search")}>
           <Search
             onClick={(res) => {
@@ -129,97 +130,110 @@ const MapSheet = ({ force_data, force_state }) => {
         {global_var.state == "initial" && !force_data ? (
           <></>
         ) : (
-          <List tight={false} gap="0" align="left">
-            <div className={cx("frame-fixed")}>
-              <div className={cx("text-emph")}>
-                {global_var.address || "주소 없음"}
-              </div>
-              <div className={cx("text")}>
-                {global_var.road_address || "도로명 주소 없음"}
-              </div>
-            </div>
-            <Divider />
-            <List
-              type="row"
-              tight={false}
-              gap="0"
-              align="left"
-              attach="space"
-              onMouseEnter={() => {
-                setNavDropDown(true);
-              }}
-              onMouseLeave={() => {
-                setNavDropDown(false);
-              }}
-              relative
-            >
-              {nav_list.map((e, idx) => {
-                return (
-                  <List type="column" gap="0" tight={false}>
-                    <div
-                      key={idx}
-                      className={cx(
-                        "frame-navigation",
-                        nav_emph.split("_")[0] == e.id ? "emph" : ""
-                      )}
-                      onClick={() => {
-                        document
-                          .getElementById("Sheet_frame_content")
-                          .scrollTo(0, offsetTop(e.id));
-                        setNavEmph(e.id);
-                      }}
-                    >
-                      {e.nav}
-                    </div>
-                  </List>
-                );
-              })}{" "}
-              {nav_dropdown ? (
-                <div
-                  className={cx("frame-dropdown")}
-                  onClick={() => {
-                    setNavDropDown(false);
-                  }}
-                >
-                  <List
-                    type="row"
-                    tight={false}
-                    gap="0"
-                    align="left"
-                    attach="space"
-                  >
-                    {nav_list.map((e, idx) => {
-                      return (
-                        <List type="column" gap="0" tight={false}>
-                          {e.children.map((e2, idx2) => (
-                            <div
-                              key={idx2}
-                              className={cx(
-                                "frame-navigation-dropdown",
-                                nav_emph == e2.id ? "emph" : ""
-                              )}
-                              onClick={() => {
-                                document
-                                  .getElementById("Sheet_frame_content")
-                                  .scrollTo(0, offsetTop(e2.id));
-                                setTimeout(() => {
-                                  setNavEmph(e2.id);
-                                }, 100);
-                              }}
-                            >
-                              {e2.nav}
-                            </div>
-                          ))}
-                        </List>
-                      );
-                    })}
-                  </List>
+          <>
+            <List tight={false} gap="0" align="left">
+              <div className={cx("frame-fixed")}>
+                <div className={cx("text-emph")}>
+                  {global_var.address || "주소 없음"}
                 </div>
-              ) : (
-                <></>
-              )}
+                <div className={cx("text")}>
+                  {global_var.road_address || "도로명 주소 없음"}
+                </div>
+              </div>
+              <Divider />
+              <List
+                type="row"
+                tight={false}
+                gap="0"
+                align="left"
+                attach="space"
+                onMouseEnter={() => {
+                  setNavDropDown(true);
+                }}
+                onMouseLeave={() => {
+                  setNavDropDown(false);
+                }}
+                relative
+              >
+                {nav_list.map((e, idx) => {
+                  return (
+                    <List key={idx} type="column" gap="0" tight={false}>
+                      <div
+                        key={idx}
+                        className={cx(
+                          "frame-navigation",
+                          nav_emph.split("_")[0] == e.id ? "emph" : ""
+                        )}
+                        onClick={() => {
+                          document
+                            .getElementById("Sheet_frame_content")
+                            .scrollTo(0, offsetTop(e.id));
+                          setNavEmph(e.id);
+                        }}
+                      >
+                        {e.nav}
+                      </div>
+                    </List>
+                  );
+                })}{" "}
+                {nav_dropdown ? (
+                  <div
+                    className={cx("frame-dropdown")}
+                    onClick={() => {
+                      setNavDropDown(false);
+                    }}
+                  >
+                    <List
+                      type="row"
+                      tight={false}
+                      gap="0"
+                      align="left"
+                      attach="space"
+                    >
+                      {nav_list.map((e, idx) => {
+                        return (
+                          <List key={idx} type="column" gap="0" tight={false}>
+                            {e.children.map((e2, idx2) => (
+                              <div
+                                key={idx2}
+                                className={cx(
+                                  "frame-navigation-dropdown",
+                                  nav_emph == e2.id ? "emph" : ""
+                                )}
+                                onClick={() => {
+                                  document
+                                    .getElementById("Sheet_frame_content")
+                                    .scrollTo(0, offsetTop(e2.id));
+                                  setTimeout(() => {
+                                    setNavEmph(e2.id);
+                                  }, 100);
+                                }}
+                              >
+                                {e2.nav}
+                              </div>
+                            ))}
+                          </List>
+                        );
+                      })}
+                    </List>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </List>
             </List>
-          </List>
+            <div className={cx("frame-header-button")}>
+              <Button
+                onClick={() =>
+                  global_var.unit_type == "py"
+                    ? setGlobalVar({ unit_type: "sqm" })
+                    : setGlobalVar({ unit_type: "py" })
+                }
+              >
+                단위 바꾸기
+              </Button>
+            </div>
+          </>
         )}
       </div>
       {global_var.state == "initial" && !force_data ? (
@@ -235,7 +249,8 @@ const MapSheet = ({ force_data, force_state }) => {
           id="MapSheet_frame_content"
           className={cx("frame-content", global_var.state)}
         >
-          <List tight={false} gap="0.5">
+          <List tight={false} gap="0.75">
+            <div className={cx("frame-top")}></div>
             <List tight={false} gap="0.25">
               <div id="list_my" className={cx("frame-data", "text-title")}>
                 MY
